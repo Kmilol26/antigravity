@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Business {
+  id              String   @id @default(uuid())
+  name            String
+  contact         String?
+  phone           String?
+  website         String?
+  instagram       String?
+  address         String?
+  logo            String?
+  banner          String?
+  categoryMessage String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  plan            Plan?    @relation(fields: [planId], references: [id])
+  planId          String?
+  invoices        Invoice[]
+}
+
+model Space {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  capacity    Int
+  images      String   @default("[]") // JSON string of image URLs
+  category    String?
+  status      String   @default("active") // active, maintenance, inactive
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  events      Event[]
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  date        DateTime
+  startTime   DateTime
+  endTime     DateTime
+  capacity    Int
+  price       Float    @default(0)
+  status      String   @default("draft") // draft, published, cancelled
+  images      String   @default("[]") // JSON string of image URLs
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  space       Space    @relation(fields: [spaceId], references: [id])
+  spaceId     String
+  guests      Guest[]
+  sales       Sale[]
+}
+
+model Guest {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  status    String   @default("pending") // pending, approved, rejected, attended
+  qrCode    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String
+}
+
+model Sale {
+  id        String   @id @default(uuid())
+  amount    Float
+  status    String   @default("completed") // completed, refunded
+  buyerName String
+  buyerEmail String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String
+}
+
+model Plan {
+  id        String     @id @default(uuid())
+  name      String
+  price     Float
+  features  String // JSON string of features
+  businesses Business[]
+}
+
+model Invoice {
+  id         String   @id @default(uuid())
+  amount     Float
+  status     String   @default("pending") // paid, pending, void
+  dueDate    DateTime
+  paidAt     DateTime?
+  createdAt  DateTime @default(now())
+  business   Business @relation(fields: [businessId], references: [id])
+  businessId String
+}
