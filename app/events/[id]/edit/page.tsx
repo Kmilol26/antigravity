@@ -3,18 +3,23 @@ import { EventForm } from "@/components/events/EventForm";
 import { notFound } from "next/navigation";
 
 export default async function EditEventPage({ params }: { params: { id: string } }) {
-    const [event, spaces] = await Promise.all([
-        getEvent(params.id),
-        getSpaces()
-    ]);
+  const [event, spaces] = await Promise.all([
+    getEvent(params.id),
+    getSpaces(),
+  ]);
 
-    if (!event) {
-        notFound();
-    }
+  if (!event) {
+    notFound();
+  }
 
-    return (
-        <div className="px-6">
-            <EventForm event={event} spaces={spaces} />
-        </div>
-    );
+  const eventForForm = {
+    ...event,
+    description: event.description ?? undefined,
+  };
+
+  return (
+    <div className="px-6">
+      <EventForm event={eventForForm} spaces={spaces} />
+    </div>
+  );
 }
