@@ -35,7 +35,7 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
             if (onCancel) {
                 onCancel();
             } else {
-                router.push('/events'); // Or refresh
+                router.push('/events/123'); // Or refresh
             }
         });
     };

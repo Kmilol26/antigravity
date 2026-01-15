@@ -63,7 +63,7 @@ export function EventForm({ event, spaces }: { event?: any, spaces: any[] }) {
             } else {
                 await createEvent(form);
             }
-            router.push('/events');
+            router.push('/events/123');
         });
     };
 

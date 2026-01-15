@@ -2,48 +2,52 @@
 
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check, CreditCard, Wallet, DollarSign, Package, TrendingUp, TrendingDown } from "lucide-react";
+import { Check, CreditCard, Wallet, DollarSign, Package, Lock, Ticket } from "lucide-react";
 
 export function EventPaymentsTab() {
     const plans = [
         {
-            name: 'Plan Básico',
-            subtitle: 'Para comercios exclusivos',
+            name: 'Basic',
+            subtitle: 'Para comercios',
             price: '29 USD',
             period: '/ al mes',
             features: [
-                { text: 'Entradas virtuales ilimitadas', badge: 'Gratis', color: 'bg-green-500' },
-                { text: '50% + 500 COP = Transacción de tickets o 5% por producto', badge: null },
-                { text: 'Envío de WhatsApp gratis', badge: 'Gratis', color: 'bg-green-500' },
-                { text: 'Envío de correo gratis', badge: 'Gratis', color: 'bg-green-500' },
+                { text: 'Perfil de categoria', badge: '1', color: 'bg-green-100' },
+                { text: 'Entradas Emitidas', badge: '1.200', color: 'bg-green-100' },
+                { text: 'Envios de Whatsapp', badge: '1.200', color: 'bg-green-100' },
+                { text: 'Envios de correos', badge: '3.600', color: 'bg-green-100' },
+                { text: 'Qr en puerta del comercio', badge: null },
+                { text: 'Dashboard en tiempo real', badge: null },
+                { text: 'Descarga de Usuarios', badge: null },
+                { text: 'Codigos identificador Referidos', badge: null },
+                { text: 'Servicio de Escaneo', badge: null },
+                { text: 'Creacion eventos ilimitados', badge: null },
             ],
             featured: false
         },
         {
-            name: 'Plan estándar',
-            subtitle: 'Para comercios correctos',
+            name: 'Pro',
+            subtitle: 'Para medianos comercios',
             price: '75 USD',
             period: '/ al mes',
             features: [
-                { text: 'Todas las características del plan anterior', badge: null },
-                { text: 'Gratis de 90% por boleto o producto', badge: 'Gratis', color: 'bg-green-500' },
-                { text: 'Todo lo que incluye el plan anterior + además Exportación de listas de asistentes', badge: null },
-                { text: '0% en compra de tickets', badge: 'Gratis', color: 'bg-green-500' },
+                { text: 'Perfiles de categoria', badge: '3', color: 'bg-amber-100' },
+                { text: 'Entradas emitidas', badge: '3.000', color: 'bg-amber-100' },
+                { text: 'Envios de Whatsapp', badge: '3.000', color: 'bg-amber-100' },
+                { text: 'Envios de correos', badge: '9.000', color: 'bg-amber-100' },
             ],
             featured: false
         },
         {
-            name: 'Administrado',
-            subtitle: 'Para el negocio más grande',
+            name: 'Advanced',
+            subtitle: 'A medida que tu negocio escala',
             price: '150 USD',
             period: '/ al mes',
             features: [
-                { text: 'Consultas de un negocio experto', badge: null },
-                { text: '0% en compra de tickets', badge: 'GRATIS', color: 'bg-purple-500' },
-                { text: 'Gestiones de Loterias', badge: 'NUEVO', color: 'bg-orange-500' },
-                { text: 'Gestiones de Loterias', badge: 'NUEVO', color: 'bg-orange-500' },
-                { text: 'Exportar transacciones', badge: 'NUEVO', color: 'bg-orange-500' },
-                { text: 'Reportes detallados', badge: 'NUEVO', color: 'bg-orange-500' },
+                { text: 'Perfiles de categoria', badge: '10', color: 'bg-violet-100' },
+                { text: 'Entradas emitidas', badge: '6.000', color: 'bg-violet-100' },
+                { text: 'Envios de Whatsapp', badge: '6.000', color: 'bg-violet-100' },
+                { text: 'Envios de correos', badge: '18.000', color: 'bg-violet-100' },
             ],
             featured: true
         },
@@ -62,12 +66,12 @@ export function EventPaymentsTab() {
     ];
 
     return (
-        <div className="space-y-10 animate-in fade-in duration-500 max-w-[820px] mx-auto pb-20">
+        <div className="space-y-10 animate-in fade-in duration-500 max-w-[820px] mx-auto px-6 pb-20">
 
             {/* Revenue Summary */}
             <div className="space-y-4">
                 <div>
-                    <h2 className="text-xl font-bold text-gray-900">Venta de entradas</h2>
+                    <h2 className="text-xl font-bold text-gray-900">Resumen de Ventas</h2>
                     <p className="text-base text-gray-500 mt-1">Resumen de ventas de tu grupo empresarial</p>
                 </div>
 
@@ -76,96 +80,109 @@ export function EventPaymentsTab() {
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">Todos los negocios</SelectItem>
+                        <SelectItem value="Todos los Negocios">Todos los negocios</SelectItem>
                         <SelectItem value="Monaco">Monaco Rooftop</SelectItem>
                         <SelectItem value="tabu">Tabu Studio Bar</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
 
-            {/* Actividad Metrics */}
+            {/* Actividad - imagen */}
             <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Actividad</h3>
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 flex items-center gap-3">
-                        <div className="p-3 bg-purple-500 rounded-lg">
-                            <TrendingUp className="w-6 h-6 text-white" />
+
+                <div className="grid grid-cols-2 gap-6">
+                    <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                                <DollarSign className="w-5 h-5 text-purple-500" />
+                            </div>
                         </div>
                         <div>
-                            <div className="text-xs text-gray-600 font-medium">Venta al tiempo</div>
-                            <div className="text-2xl font-bold text-purple-600">1,000,000 COP</div>
+                            <div className="text-sm text-gray-700">Todo el tiempo</div>
+                            <div className="text-2xl font-bold text-[#FE6535]">1.000.000 COP</div>
                         </div>
                     </div>
 
-                    <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex items-center gap-3">
-                        <div className="p-3 bg-green-500 rounded-lg">
-                            <DollarSign className="w-6 h-6 text-white" />
+                    <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                                <Ticket className="w-5 h-5 text-green-600" />
+                            </div>
                         </div>
                         <div>
-                            <div className="text-xs text-gray-600 font-medium">Más usado</div>
-                            <div className="text-2xl font-bold text-green-600">900,000 COP</div>
+                            <div className="text-sm text-gray-700">Mes pasado</div>
+                            <div className="text-2xl font-bold text-[#FE6535]">500.000 COP</div>
                         </div>
                     </div>
 
-                    <div className="bg-orange-50 border border-[#FE6535] rounded-xl p-4 flex items-center gap-3">
-                        <div className="p-3 bg-orange-500 rounded-lg">
-                            <TrendingDown className="w-6 h-6 text-white" />
+                    <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                                <Lock className="w-5 h-5 text-yellow-500" />
+                            </div>
                         </div>
                         <div>
-                            <div className="text-xs text-gray-600 font-medium">Entrega variable</div>
-                            <div className="text-2xl font-bold text-orange-600">50 EA</div>
+                            <div className="text-sm text-gray-700">Entradas vendidas</div>
+                            <div className="text-2xl font-bold text-[#FE6535]">1245</div>
                         </div>
                     </div>
 
-                    <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3">
-                        <div className="p-3 bg-red-500 rounded-lg">
-                            <Wallet className="w-6 h-6 text-white" />
+                    <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                                <Package className="w-5 h-5 text-orange-500" />
+                            </div>
                         </div>
                         <div>
-                            <div className="text-xs text-gray-600 font-medium">Perdida vendida</div>
-                            <div className="text-2xl font-bold text-red-600">100 EA</div>
+                            <div className="text-sm text-gray-700">Entradas vendidas</div>
+                            <div className="text-2xl font-bold text-[#FE6535]">866</div>
                         </div>
                     </div>
                 </div>
+
+                <Button className="mt-6 bg-[#FE6535] px-6 py-2 rounded-lg text-white">Cobrar</Button>
             </div>
 
-            {/* Current Plan */}
-            <div className="border border-[#FE6535] rounded-xl p-6 bg-orange-50">
-                <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-orange-500 rounded-lg">
-                        <Package className="w-5 h-5 text-white" />
+            {/* Plan tikipal */}
+            <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Plan tikipal</h3>
+                <p className="text-sm text-gray-600 mb-4">Resumen de suscripciones y espacios activos</p>
+
+                <div className="grid grid-cols-3 gap-6 items-start">
+                    <div className="flex flex-col items-start text-left">
+                        <div className="text-sm text-gray-700">Plan vigente</div>
+                        <div className="text-4xl font-light text-[#9747FF]">Basic</div>
                     </div>
-                    <div>
-                        <h3 className="text-lg font-bold text-gray-900">Plan Actual</h3>
-                        <p className="text-xs text-gray-500">Resumen de tu suscripción activo</p>
+
+                    <div className="flex flex-col items-start text-left">
+                        <div className="text-sm text-gray-700">Costo plan</div>
+                        <div className="text-4xl font-light text-[#FE6535]">29 USD</div>
+                        <div className="text-xs text-gray-500">USD al mes</div>
+                    </div>
+
+                    <div className="flex flex-col items-start text-left">
+                        <div className="text-sm text-gray-700">Emisiones extra</div>
+                        <div className="text-4xl font-light text-[#FE6535]">7.2¢</div>
+                        <div className="text-xs text-gray-500">(300 COP)</div>
                     </div>
                 </div>
 
-                <div className="bg-white border border-[#FE6535] rounded-lg p-4 mt-4">
+                <div className="grid grid-cols-3 gap-6 mt-6">
                     <div>
-                        <div className="text-xs text-gray-500 mb-1">Plan vigente</div>
-                        <div className="text-sm font-bold text-gray-900">BASIC</div>
+                        <div className="text-sm text-gray-700">Espacios activos</div>
+                        <div className="text-4xl font-light text-[#FE6535]">10</div>
                     </div>
-                    <div className="mt-3 flex items-baseline gap-2">
-                        <span className="text-2xl font-bold text-orange-600">29 USD</span>
-                        <span className="text-sm text-gray-500">/ al mes</span>
+
+                    <div className="col-start-2">
+                        <div className="text-sm text-gray-700">Total facturado</div>
+                        <div className="text-4xl font-light text-[#FE6535]">300 USD</div>
                     </div>
+
+                    <div />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mt-4">
-                    <div>
-                        <div className="text-xs text-gray-500">Espacios activos</div>
-                        <div className="text-xl font-bold text-gray-900">10</div>
-                    </div>
-                    <div>
-                        <div className="text-xs text-gray-500">Total facturado</div>
-                        <div className="text-xl font-bold text-gray-900">300 USD</div>
-                    </div>
-                </div>
-
-                <Button className="w-full mt-4 bg-orange-500 hover:bg-orange-600 text-white font-bold">
-                    Cambiar plan
-                </Button>
+                <Button className="mt-6 bg-[#FE6535] px-6 py-2 rounded-lg text-white">Aumenta tu plan</Button>
             </div>
 
             {/* Plan Comparisons */}
@@ -179,45 +196,67 @@ export function EventPaymentsTab() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {plans.map((plan, idx) => (
-                        <div
-                            key={idx}
-                            className={`border rounded-xl p-5 ${plan.featured ? 'border-orange-300 bg-orange-50/30' : 'border-[#FE6535] bg-white'}`}
-                        >
-                            <div className="mb-4">
-                                <div className="text-xs text-gray-500 mb-1">{plan.subtitle}</div>
-                                <div className="text-base font-bold text-gray-900">{plan.name}</div>
-                                <div className="mt-2 flex items-baseline gap-1">
-                                    <span className="text-2xl font-bold text-orange-600">{plan.price}</span>
-                                    <span className="text-xs text-gray-500">{plan.period}</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start justify-center">
+                    {plans.map((plan, idx) => {
+                        const isCurrent = idx === 0;
+                        return (
+                                <div key={plan.name} className="max-w-[323px] w-full h-[592px]">
+                                <div className="border border-[#FE6535] rounded-xl bg-white p-3 flex flex-col h-full">
+                                    <div className="flex items-start justify-between mb-3">
+                                        <div className="min-w-0">
+                                            <h4 className={`text-2xl font-medium leading-tight truncate ${isCurrent ? 'bg-gradient-to-r from-[#FE6EA1] to-[#9747FF] bg-clip-text text-transparent' : idx === 1 ? 'bg-gradient-to-r from-[#9747FF] to-[#FE6EA1] bg-clip-text text-transparent' : 'bg-gradient-to-r from-[#FE6535] to-[#9747FF] bg-clip-text text-transparent'}`}>{plan.name.replace('Plan ','')}</h4>
+                                            <div className="text-xs text-gray-600 mt-1">{plan.subtitle}</div>
+                                        </div>
+
+                                        {isCurrent && (
+                                            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-green-100 text-green-800 text-xs font-semibold mt-1">Plan actual</span>
+                                        )}
+                                    </div>
+
+                                    <div className="mb-3">
+                                        <div className="flex items-baseline gap-2">
+                                            <div className="text-4xl font-light tracking-tight text-[#FE6535]">{plan.price.replace(' USD','')}</div>
+                                            <div className="text-sm font-medium text-gray-700">USD</div>
+                                            <div className="text-xs text-gray-500 ml-2">{plan.period.replace('/', '').trim()}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex-1 overflow-y-auto pr-2 pb-2">
+                                        <div className="mb-2">
+                                            <div className="font-semibold mb-1 text-sm">Tarifas de cobro a partir de</div>
+                                            <ul className="list-disc pl-4 space-y-1 text-xs text-gray-700 mb-2">
+                                                <li>3.9 % + 900 COP + Impuestos</li>
+                                                <li>300 COP en invitaciones y cortesías adicionales</li>
+                                            </ul>
+                                        </div>
+
+                                        <div>
+                                            <div className="font-semibold mb-1 text-sm">Funciones destacadas</div>
+                                            <ul className="space-y-2 text-sm text-gray-700">
+                                                {plan.features.map((feature, fidx) => (
+                                                    <li key={fidx} className="flex items-start gap-2">
+                                                        <Check className="w-3 h-3 text-gray-600 flex-shrink-0 mt-0.5" />
+                                                        <div className="flex items-center gap-2">
+                                                            {feature.badge && (
+                                                                <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${idx === 0 ? 'bg-green-100 text-green-800' : idx === 1 ? 'bg-amber-100 text-amber-700' : 'bg-violet-100 text-violet-700'}`}>{feature.badge}</span>
+                                                            )}
+                                                            <span className="text-sm text-gray-700">{feature.text}</span>
+                                                        </div>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    {!isCurrent && (
+                                        <div className="mt-2">
+                                            <Button className="w-full py-2 text-sm bg-[#FE6535] hover:bg-[#e85c30] text-white font-medium rounded-md">Aumenta tu plan</Button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
-
-                            <ul className="space-y-2 mb-4">
-                                {plan.features.map((feature, fidx) => (
-                                    <li key={fidx} className="flex items-start gap-2 text-[10px] leading-relaxed">
-                                        <Check className="w-3 h-3 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <div className="flex-1">
-                                            <span className="text-gray-700">{feature.text}</span>
-                                            {feature.badge && (
-                                                <span className={`ml-1.5 px-1.5 py-0.5 rounded text-[8px] font-bold text-white ${feature.color}`}>
-                                                    {feature.badge}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <Button
-                                className={`w-full ${plan.featured ? 'bg-orange-500 hover:bg-orange-600' : 'bg-gray-100 hover:bg-gray-200 text-gray-900'}`}
-                                variant={plan.featured ? 'default' : 'ghost'}
-                            >
-                                Obtener plan
-                            </Button>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
 
