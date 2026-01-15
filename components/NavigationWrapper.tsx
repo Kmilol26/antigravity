@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from "next/navigation";
-import { BusinessNav } from "./BusinessNav";
+import { BusinessNav } from "./events/123";
 
 export function NavigationWrapper() {
     const pathname = usePathname();

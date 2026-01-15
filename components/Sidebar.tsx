@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 const navigation = [
-    { name: 'Negocio', href: '/business', icon: Building2 },
+    { name: 'Negocio', href: '/events/123', icon: Building2 },
     { name: 'Espacios', href: '/spaces', icon: LayoutGrid },
     { name: 'Eventos', href: '/events', icon: Calendar },
     { name: 'Listas', href: '/lists', icon: Users },

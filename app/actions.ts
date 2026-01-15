@@ -41,7 +41,7 @@ export async function updateBusiness(formData: FormData) {
         }
     })
 
-    revalidatePath('/business')
+    revalidatePath('/events/123')
     return { success: true }
 }
 
