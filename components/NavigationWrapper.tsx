@@ -1,21 +1,17 @@
 'use client';
 
 import { usePathname } from "next/navigation";
-import { BusinessNav } from "@/components/BusinessNav";
+import { BusinessNav } from "./BusinessNav"; // ajusta la ruta real donde esté BusinessNav
 
 export function NavigationWrapper() {
   const pathname = usePathname();
 
-  // Detecta si estamos en /events/[id] pero no en /events ni /events/new
   const isEventDashboard =
     pathname.startsWith("/events/") &&
     pathname !== "/events" &&
-    !pathname.includes("/new");
+    !pathname.startsWith("/events/new");
 
-  // Si es dashboard de evento, no mostramos la navegación general
-  if (isEventDashboard) {
-    return null;
-  }
+  if (isEventDashboard) return null;
 
   return <BusinessNav />;
 }

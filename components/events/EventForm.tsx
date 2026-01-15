@@ -1,12 +1,13 @@
 'use client';
 
+import React, { useMemo, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useMemo, useState, useTransition } from "react";
 import { createEvent, updateEvent } from "@/app/actions";
-import { useRouter } from "next/navigation";
 
 type Space = { id: string; name: string; capacity: number };
+
 type EventLike = {
   id?: string;
   title?: string;
@@ -24,6 +25,7 @@ type EventLike = {
 function safeParseImages(images: EventLike["images"]): string[] {
   if (!images) return [];
   if (Array.isArray(images)) return images.filter(Boolean);
+
   if (typeof images === "string") {
     try {
       const parsed = JSON.parse(images);
@@ -32,6 +34,7 @@ function safeParseImages(images: EventLike["images"]): string[] {
       return [];
     }
   }
+
   return [];
 }
 
@@ -54,60 +57,68 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
   const router = useRouter();
 
   const [images, setImages] = useState<string[]>(() => safeParseImages(event?.images));
+
   const [status, setStatus] = useState<"draft" | "published">(
-    (event?.status === "published" ? "published" : "draft")
+    event?.status === "published" ? "published" : "draft"
   );
 
-  const initialDate = useMemo(() => toDateInputValue(event?.date), [event?.date]);
-  const initialStartTime = useMemo(() => toTimeInputValue(event?.startTime), [event?.startTime]);
-  const initialEndTime = useMemo(() => toTimeInputValue(event?.endTime), [event?.endTime]);
+  const initialDate = useMemo(() => toDateInputValue(event?.date ?? null), [event?.date ?? null]);
+  const initialStartTime = useMemo(() => toTimeInputValue(event?.startTime ?? null), [event?.startTime ?? null]);
+  const initialEndTime = useMemo(() => toTimeInputValue(event?.endTime ?? null), [event?.endTime ?? null]);
 
   const handleSimulateUpload = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+    const randomColor = Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0");
+
     const url = `https://placehold.co/600x400/${randomColor}/white?text=Event+Image`;
     setImages((prev) => [...prev, url]);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
 
     form.set("images", JSON.stringify(images));
     form.set("status", status);
 
-    const dateStr = (form.get("date") as string) || "";
-    const startStr = (form.get("startTime") as string) || "";
-    const endStr = (form.get("endTime") as string) || "";
+    const dateStr = String(form.get("date") || "");
+    const startStr = String(form.get("startTime") || "");
+    const endStr = String(form.get("endTime") || "");
 
-    // Convierte date + time a ISO-like string (YYYY-MM-DDTHH:mm:00)
+    // Convierte date + time a ISO-like string: YYYY-MM-DDTHH:mm:00
     if (dateStr && startStr) form.set("startTime", `${dateStr}T${startStr}:00`);
 
     if (dateStr && endStr) {
       let endDateStr = dateStr;
+
+      // Si end < start => asume que termina al día siguiente
       if (startStr && endStr && endStr < startStr) {
         const d = new Date(dateStr);
         d.setDate(d.getDate() + 1);
         endDateStr = d.toISOString().split("T")[0];
       }
+
       form.set("endTime", `${endDateStr}T${endStr}:00`);
     }
 
     startTransition(async () => {
-      // Si tus actions retornan el evento creado/actualizado, úsalo para navegar.
-      // Si NO retornan nada, deja el push fijo.
       if (event?.id) {
         await updateEvent(form);
       } else {
         await createEvent(form);
       }
 
-      // Opción A (lo que quieres hoy):
+      // Hoy lo quieres fijo:
       router.push("/events/123");
-
-      // Opción B (mejor a futuro si tienes id):
-      // router.push(event?.id ? `/events/${event.id}` : "/events/123");
     });
   };
+
+  const capacityDefault =
+    typeof event?.capacity === "number" ? String(event.capacity) : undefined;
+
+  const priceDefault =
+    typeof event?.price === "number" ? String(event.price) : undefined;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl mx-auto py-8">
@@ -123,7 +134,12 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label className="text-sm font-medium">Título</label>
-          <Input name="title" defaultValue={event?.title || ""} placeholder="Ej. Fiesta de Verano" required />
+          <Input
+            name="title"
+            defaultValue={event?.title || ""}
+            placeholder="Ej. Fiesta de Verano"
+            required
+          />
         </div>
 
         <div className="space-y-2">
@@ -174,12 +190,24 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="space-y-2">
           <label className="text-sm font-medium">Cupo Total</label>
-          <Input type="number" name="capacity" defaultValue={event?.capacity ?? ""} placeholder="0" required />
+          <Input
+            type="number"
+            name="capacity"
+            defaultValue={capacityDefault}
+            placeholder="0"
+            required
+          />
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium">Precio ($)</label>
-          <Input type="number" step="0.01" name="price" defaultValue={event?.price ?? ""} placeholder="0.00" />
+          <Input
+            type="number"
+            step="0.01"
+            name="price"
+            defaultValue={priceDefault}
+            placeholder="0.00"
+          />
         </div>
 
         <div className="space-y-2">
@@ -221,7 +249,13 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
               </button>
             </div>
           ))}
-          <Button type="button" variant="outline" className="h-full min-h-[100px] border-dashed" onClick={handleSimulateUpload}>
+
+          <Button
+            type="button"
+            variant="outline"
+            className="h-full min-h-[100px] border-dashed"
+            onClick={handleSimulateUpload}
+          >
             + Subir Imagen
           </Button>
         </div>
