@@ -124,14 +124,14 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
     <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl mx-auto py-8">
       <input type="hidden" name="id" value={event?.id || ""} />
 
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <h1 className="text-2xl font-bold">{event?.id ? "Editar Evento" : "Crear Evento"}</h1>
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} className="w-full sm:w-auto">
           {isPending ? "Guardando..." : event?.id ? "Actualizar" : "Crear Evento"}
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <div className="space-y-2">
           <label className="text-sm font-medium">Título</label>
           <Input
@@ -170,7 +170,7 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         <div className="space-y-2">
           <label className="text-sm font-medium">Fecha</label>
           <Input type="date" name="date" defaultValue={initialDate} required />
@@ -185,9 +185,7 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
           <label className="text-sm font-medium">Hora Fin</label>
           <Input type="time" name="endTime" defaultValue={initialEndTime} required />
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="space-y-2">
           <label className="text-sm font-medium">Cupo Total</label>
           <Input
@@ -235,7 +233,7 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
 
       <div className="space-y-4">
         <label className="text-sm font-medium block">Imágenes</label>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {images.map((img, i) => (
             <div key={i} className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden border">
               {/* eslint-disable-next-line @next/next/no-img-element */}

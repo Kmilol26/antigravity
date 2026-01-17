@@ -7,7 +7,7 @@ export function MainDashboard({ metrics }: { metrics: any }) {
     return (
         <div className="space-y-8">
             {/* KPIs */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 <Card
                     title="Ingresos Totales"
                     value={`$${metrics.revenue.toLocaleString()}`}
@@ -38,24 +38,26 @@ export function MainDashboard({ metrics }: { metrics: any }) {
                 />
             </div>
 
-            {/* Chart Section (Simulated CSS Bar Chart) */}
+            {/* Chart Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg border shadow-sm">
+                <div className="bg-white p-6 rounded-lg border shadow-sm overflow-hidden">
                     <h3 className="text-lg font-bold mb-6">Ingresos por Mes</h3>
-                    <div className="h-64 flex items-end justify-between gap-2">
-                        {[40, 65, 55, 80, 45, 90].map((h, i) => (
-                            <div key={i} className="flex-1 flex flex-col items-center gap-2 group">
-                                <div
-                                    className="w-full bg-primary/20 rounded-t-md transition-all group-hover:bg-primary/40 relative"
-                                    style={{ height: `${h}%` }}
-                                >
-                                    <span className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">
-                                        ${h}k
-                                    </span>
+                    <div className="overflow-x-auto scrollbar-hide">
+                        <div className="h-64 flex items-end justify-between gap-2 min-w-[400px]">
+                            {[40, 65, 55, 80, 45, 90].map((h, i) => (
+                                <div key={i} className="flex-1 flex flex-col items-center gap-2 group">
+                                    <div
+                                        className="w-full bg-primary/20 rounded-t-md transition-all group-hover:bg-primary/40 relative"
+                                        style={{ height: `${h}%` }}
+                                    >
+                                        <span className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">
+                                            ${h}k
+                                        </span>
+                                    </div>
+                                    <span className="text-xs text-gray-500">{['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'][i]}</span>
                                 </div>
-                                <span className="text-xs text-gray-500">{['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'][i]}</span>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -96,5 +98,5 @@ function Card({ title, value, icon: Icon, change, color }: any) {
                 <span>{change}</span>
             </div>
         </div>
-    )
+    );
 }

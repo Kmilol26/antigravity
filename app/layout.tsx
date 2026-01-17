@@ -4,7 +4,6 @@ import "./globals.css";
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { NavigationWrapper } from "@/components/NavigationWrapper";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,9 +28,8 @@ export default function RootLayout({
         className={`${roboto.variable} font-sans antialiased min-h-screen bg-background flex flex-col`}
       >
         <Header />
-        <NavigationWrapper />
         <main className="flex-1">
-          <div className="max-w-7xl mx-auto w-full py-8 text-gray-800">
+          <div className="max-w-7xl mx-auto w-full px-4 md:px-6 py-6 md:py-8 text-gray-800">
             {children}
           </div>
         </main>

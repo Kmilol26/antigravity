@@ -17,7 +17,7 @@ export function EventSalesTab() {
     ];
 
     return (
-        <div className="space-y-10 animate-in fade-in duration-500 max-w-[820px] mx-auto pb-20">
+        <div className="space-y-10 animate-in fade-in duration-500 max-w-3xl mx-auto pb-20 px-4 md:px-0">
 
             {/* Filters Section */}
             <div className="space-y-6">
@@ -25,7 +25,7 @@ export function EventSalesTab() {
                     <h3 className="font-bold text-xl text-gray-900">Espacios o eventos activos</h3>
                     <p className="text-base text-gray-500">Selecciona el espacio/evento</p>
                     <Select defaultValue="Monaco">
-                        <SelectTrigger className="w-[280px] h-10 border-[#FE6535] text-sm font-medium text-gray-700 rounded-lg bg-white">
+                        <SelectTrigger className="w-full sm:w-[280px] h-10 border-[#FE6535] text-sm font-medium text-gray-700 rounded-lg bg-white">
                             <div className="flex items-center gap-2">
                                 <Ticket className="w-3.5 h-3.5 text-gray-400" />
                                 <SelectValue placeholder="Selecciona..." />
@@ -42,7 +42,7 @@ export function EventSalesTab() {
                     <h3 className="font-bold text-xl text-gray-900">Fechas activas</h3>
                     <p className="text-base text-gray-500">Selecciona la fecha de operación</p>
                     <Select defaultValue="jun05">
-                        <SelectTrigger className="w-[280px] h-10 border-[#FE6535] text-sm font-medium text-gray-700 rounded-lg bg-white">
+                        <SelectTrigger className="w-full sm:w-[280px] h-10 border-[#FE6535] text-sm font-medium text-gray-700 rounded-lg bg-white">
                             <div className="flex items-center gap-2">
                                 <Ticket className="w-3.5 h-3.5 text-gray-400" />
                                 <SelectValue placeholder="Selecciona..." />
@@ -75,8 +75,8 @@ export function EventSalesTab() {
                 </div>
             </div>
 
-            {/* Resumen de tickets Card — 330 x 265 (bonito) */}
-            <div className="w-[330px] h-[265px] border border-[#FE6535] rounded-2xl bg-white shadow-sm px-6 py-6 overflow-hidden">
+            {/* Resumen de tickets Card — Responsive width */}
+            <div className="w-full sm:w-[330px] border border-[#FE6535] rounded-2xl bg-white shadow-sm px-6 py-6 overflow-hidden">
                 <h3 className="text-[16px] font-medium text-black leading-none mb-6">
                     Resumen de tickets
                 </h3>
@@ -133,7 +133,7 @@ export function EventSalesTab() {
                             <span className="text-[16px] text-white font-medium leading-none">Ingresos</span>
                         </div>
 
-                        <div className="h-[34px] w-[78px] rounded-2xl bg-[#EEE6FF] flex items-center justify-center">
+                        <div className="h-[34px] w-full sm:w-[78px] rounded-2xl bg-[#EEE6FF] flex items-center justify-center">
                             <span className="text-[16px] font-medium text-[#7C3AED] leading-none">10</span>
                         </div>
                     </div>
@@ -147,36 +147,36 @@ export function EventSalesTab() {
                     <p className="text-base text-gray-500 mt-1">Vuelve a enviar la entrada que necesites</p>
                 </div>
 
-                <div className="flex justify-between items-center gap-4">
+                <div className="flex justify-between items-center gap-4 text-xs sm:text-sm">
                     <div className="relative flex-1 max-w-xs">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
                         <Input placeholder="Buscar ticket" className="pl-9 h-9 text-xs border-[#FE6535] rounded-full bg-white" />
                     </div>
                     <Button variant="secondary" size="sm" className="bg-orange-100/50 text-orange-600 text-xs font-bold border-none hover:bg-orange-100">
-                        Descargar lista <ExternalLink className="w-3 h-3 ml-2" />
+                        Descargar <ExternalLink className="w-3 h-3 ml-1 sm:ml-2" />
                     </Button>
                 </div>
 
-                {/* Attendees List/Table */}
+                {/* Attendees List */}
                 <div className="space-y-3">
                     {attendees.map((attendee) => (
-                        <div key={attendee.id} className="flex items-center justify-between p-3 border border-[#FE6535] rounded-lg bg-white hover:shadow-sm transition-shadow">
-                            <div className="flex items-center gap-3">
-                                <div className="p-1.5 border border-gray-200 rounded-md">
+                        <div key={attendee.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 border border-[#FE6535] rounded-lg bg-white hover:shadow-sm transition-shadow gap-3 sm:gap-4">
+                            <div className="flex items-center gap-3 w-full sm:w-auto">
+                                <div className="p-1.5 border border-gray-200 rounded-md shrink-0">
                                     <Ticket className="w-3.5 h-3.5 text-gray-400" />
                                 </div>
-                                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span className="text-sm font-bold text-gray-800 w-32">{attendee.name}</span>
-                                    <span className="text-xs text-gray-400 font-medium">{attendee.list}</span>
+                                <div className="flex flex-col gap-0.5 min-w-0">
+                                    <span className="text-sm font-bold text-gray-800 truncate">{attendee.name}</span>
+                                    <span className="text-xs text-gray-400 font-medium truncate">{attendee.list}</span>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
                                 <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full text-[10px] font-bold">
                                     {attendee.status}
                                 </span>
-                                <Button size="sm" variant="secondary" className="bg-gray-100 text-gray-500 hover:bg-gray-200 h-7 text-[10px] font-medium border border-gray-200">
-                                    <QrCode className="w-3 h-3 mr-1.5" /> Enviar QR ↗
+                                <Button size="sm" variant="secondary" className="bg-gray-100 text-gray-500 hover:bg-gray-200 h-7 text-[10px] font-medium border border-gray-200 flex-1 sm:flex-none">
+                                    <QrCode className="w-3 h-3 mr-1.5" /> Enviar QR
                                 </Button>
                             </div>
                         </div>

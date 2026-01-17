@@ -98,4 +98,15 @@
   .glass-dark {
     @apply bg-gray-900/70 backdrop-blur-xl border border-gray-800/50 shadow-sm text-white;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }
