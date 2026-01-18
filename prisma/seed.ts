@@ -41,28 +41,33 @@ async function main() {
         }
     })
 
-    // 3. Create Spaces
-    const space1 = await prisma.space.create({
-        data: {
-            name: 'El Fabuloso Rooftop',
-            description: 'La mejor vista de la ciudad con coctelería de autor.',
-            capacity: 300,
-            category: 'Rooftop',
-            status: 'active',
-            images: JSON.stringify(['https://placehold.co/600x400/2a2a2a/white?text=Rooftop+View']),
-        }
-    })
+    // 3. Create Spaces (Matching UI Mockup)
+    const spaceData = [
+        { name: 'Tabu Studio Bar', category: 'Electronica', capacity: 200, price: 20.000, images: JSON.stringify(['https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80']), location: 'Cra 27 # 52-24' },
+        { name: 'Toni-k Bar', category: 'Champeta', capacity: 150, price: 20.000, images: JSON.stringify(['https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80']), location: 'Cra 27 # 52-36' },
+        { name: 'Cacao Blunt Bar', category: 'Reggaeton', capacity: 300, price: 20.000, images: JSON.stringify(['https://images.unsplash.com/photo-1574096079513-d82599692951?auto=format&fit=crop&q=80']), location: 'Cr 50 # 12-63' },
+        { name: 'Octava Club', category: 'House', capacity: 500, price: 40.000, images: JSON.stringify(['https://images.unsplash.com/photo-1570876050997-2fdefb00c004?auto=format&fit=crop&q=80']), location: 'Cra 8 # 63-41' },
+        { name: 'Salvador', category: 'Electronica', capacity: 250, price: 30.000, images: JSON.stringify(['https://images.unsplash.com/photo-1514525253440-b393452e8d26?auto=format&fit=crop&q=80']), location: 'Cl 85 # 12-71' },
+    ]
 
-    const space2 = await prisma.space.create({
-        data: {
-            name: 'Salón Principal',
-            description: 'Espacio para grandes eventos y conciertos.',
-            capacity: 800,
-            category: 'Discoteca',
-            status: 'active',
-            images: JSON.stringify(['https://placehold.co/600x400/1a1a1a/white?text=Stage']),
-        }
-    })
+    const createdSpaces = []
+    for (const s of spaceData) {
+        const space = await prisma.space.create({
+            data: {
+                name: s.name,
+                description: `El mejor ambiente de ${s.category}`,
+                capacity: s.capacity,
+                category: s.category,
+                status: 'active',
+                images: s.images,
+                // Start adding price/location to schema if needed or just description
+            }
+        })
+        createdSpaces.push(space)
+    }
+
+    const space1 = createdSpaces[0] // Tabu
+    const space2 = createdSpaces[1] // Toni-k
 
     // 4. Create Events
     const event1 = await prisma.event.create({

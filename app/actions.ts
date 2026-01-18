@@ -270,6 +270,39 @@ export async function updatePlan(businessId: string, planId: string) {
     return { success: true }
 }
 
-export async function getPlans() {
-    return prisma.plan.findMany()
+// ...
+// ...
+export async function createPaymentMethod(formData: FormData) {
+    const type = formData.get('type') as string
+
+    // Extract common
+    const last4 = (formData.get('last4') as string) || (formData.get('accountNumber') as string)?.slice(-4) || '****';
+
+    // Extract specific
+    const bankName = formData.get('bankName') as string || undefined;
+    const accountType = formData.get('accountType') as string || undefined;
+    const accountNumber = formData.get('accountNumber') as string || undefined;
+    const expiry = formData.get('expiry') as string || undefined;
+
+    await prisma.paymentMethod.create({
+        data: {
+            businessId: '123',
+            type,
+            last4,
+            bankName,
+            accountType,
+            accountNumber,
+            // brand and expiry would go here if schema had them fully mapped or used
+            expiry
+        }
+    })
+    revalidatePath('/payments')
+    return { success: true }
+}
+
+export async function getPaymentMethods() {
+    return prisma.paymentMethod.findMany({
+        where: { businessId: '123' },
+        orderBy: { createdAt: 'desc' }
+    })
 }

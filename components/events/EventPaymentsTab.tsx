@@ -2,9 +2,19 @@
 
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check, CreditCard, Wallet, DollarSign, Package, Lock, Ticket } from "lucide-react";
+import { Check, CreditCard, Wallet, DollarSign, Package, Lock, Ticket, Building2 } from "lucide-react";
+import { CreditCardForm } from "@/components/payments/CreditCardForm";
+import { BankAccountForm } from "@/components/payments/BankAccountForm";
+import { useState } from "react";
 
-export function EventPaymentsTab() {
+export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any[] }) {
+    const [addingCard, setAddingCard] = useState(false);
+    const [addingBank, setAddingBank] = useState(false);
+
+    // Separate methods by type
+    const cards = initialMethods.filter(m => m.type === 'credit_card');
+    const banks = initialMethods.filter(m => m.type === 'bank_account');
+
     const plans = [
         {
             name: 'Basic',
@@ -200,11 +210,11 @@ export function EventPaymentsTab() {
                     {plans.map((plan, idx) => {
                         const isCurrent = idx === 0;
                         return (
-                                <div key={plan.name} className="max-w-[323px] w-full h-[592px]">
+                            <div key={plan.name} className="max-w-[323px] w-full h-[592px]">
                                 <div className="border border-[#FE6535] rounded-xl bg-white p-3 flex flex-col h-full">
                                     <div className="flex items-start justify-between mb-3">
                                         <div className="min-w-0">
-                                            <h4 className={`text-2xl font-medium leading-tight truncate ${isCurrent ? 'bg-gradient-to-r from-[#FE6EA1] to-[#9747FF] bg-clip-text text-transparent' : idx === 1 ? 'bg-gradient-to-r from-[#9747FF] to-[#FE6EA1] bg-clip-text text-transparent' : 'bg-gradient-to-r from-[#FE6535] to-[#9747FF] bg-clip-text text-transparent'}`}>{plan.name.replace('Plan ','')}</h4>
+                                            <h4 className={`text-2xl font-medium leading-tight truncate ${isCurrent ? 'bg-gradient-to-r from-[#FE6EA1] to-[#9747FF] bg-clip-text text-transparent' : idx === 1 ? 'bg-gradient-to-r from-[#9747FF] to-[#FE6EA1] bg-clip-text text-transparent' : 'bg-gradient-to-r from-[#FE6535] to-[#9747FF] bg-clip-text text-transparent'}`}>{plan.name.replace('Plan ', '')}</h4>
                                             <div className="text-xs text-gray-600 mt-1">{plan.subtitle}</div>
                                         </div>
 
@@ -215,7 +225,7 @@ export function EventPaymentsTab() {
 
                                     <div className="mb-3">
                                         <div className="flex items-baseline gap-2">
-                                            <div className="text-4xl font-light tracking-tight text-[#FE6535]">{plan.price.replace(' USD','')}</div>
+                                            <div className="text-4xl font-light tracking-tight text-[#FE6535]">{plan.price.replace(' USD', '')}</div>
                                             <div className="text-sm font-medium text-gray-700">USD</div>
                                             <div className="text-xs text-gray-500 ml-2">{plan.period.replace('/', '').trim()}</div>
                                         </div>
@@ -261,35 +271,77 @@ export function EventPaymentsTab() {
             </div>
 
             {/* Payment Method */}
-            <div className="border border-[#FE6535] rounded-xl p-6 bg-white">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Método de pago</h3>
-                <p className="text-xs text-gray-500 mb-4">Añade una tarjeta o el modelo de pago compatible con Stripe que en Tikipal puedes continuar operaciones</p>
+            <div className="border border-[#FE6535] rounded-xl p-6 bg-white transition-all">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Método de pago (Tarjetas)</h3>
+                <p className="text-xs text-gray-500 mb-4">Añade una tarjeta para continuar operaciones</p>
 
-                <div className="flex gap-3">
-                    <div className="w-12 h-8 bg-blue-600 rounded flex items-center justify-center">
-                        <CreditCard className="w-6 h-6 text-white" />
+                {/* List existing cards */}
+                {cards.length > 0 && (
+                    <div className="mb-4 space-y-2">
+                        {cards.map((card: any) => (
+                            <div key={card.id} className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-6 bg-gray-800 rounded text-white flex items-center justify-center text-[10px]">Your</div>
+                                    <span className="text-sm font-medium">**** {card.last4}</span>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="w-12 h-8 bg-red-600 rounded flex items-center justify-center">
-                        <CreditCard className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="w-12 h-8 bg-yellow-400 rounded flex items-center justify-center">
-                        <span className="text-xs font-bold">*</span>
-                    </div>
-                </div>
+                )}
 
-                <Button variant="secondary" className="mt-4 border-[#FE6535]">
-                    Obtener ↗
-                </Button>
+                {addingCard ? (
+                    <CreditCardForm onCancel={() => setAddingCard(false)} onSuccess={() => setAddingCard(false)} />
+                ) : (
+                    <div className="flex flex-col gap-3">
+
+                        {/* Icons ... */}
+                        {cards.length === 0 && (
+                            <div className="flex gap-3">
+                                <div className="w-12 h-8 bg-blue-600 rounded flex items-center justify-center">
+                                    <CreditCard className="w-6 h-6 text-white" />
+                                </div>
+                                <div className="w-12 h-8 bg-red-600 rounded flex items-center justify-center">
+                                    <CreditCard className="w-6 h-6 text-white" />
+                                </div>
+                            </div>
+                        )}
+
+                        <Button variant="secondary" className="border-[#FE6535] self-start" onClick={() => setAddingCard(true)}>
+                            {cards.length > 0 ? 'Agregar otra tarjeta +' : 'Agregar Tarjeta +'}
+                        </Button>
+                    </div>
+                )}
             </div>
 
             {/* Bank Account */}
-            <div className="border border-[#FE6535] rounded-xl p-6 bg-white">
+            <div className="border border-[#FE6535] rounded-xl p-6 bg-white transition-all">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Cuenta bancaria</h3>
-                <p className="text-xs text-gray-500 mb-4">Registra una cuenta de cliente con el de Tikipal</p>
+                <p className="text-xs text-gray-500 mb-4">Registra una cuenta de cliente para recibir pagos</p>
 
-                <Button variant="secondary" className="border-[#FE6535]">
-                    Obtener ↗
-                </Button>
+                {/* List existing banks */}
+                {banks.length > 0 && (
+                    <div className="mb-4 space-y-2">
+                        {banks.map((bank: any) => (
+                            <div key={bank.id} className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+                                <div className="flex items-center gap-3">
+                                    <Building2 className="w-5 h-5 text-gray-600" />
+                                    <div className="flex flex-col">
+                                        <span className="text-sm font-bold">{bank.bankName}</span>
+                                        <span className="text-xs text-gray-500">**** {bank.last4}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {addingBank ? (
+                    <BankAccountForm onCancel={() => setAddingBank(false)} onSuccess={() => setAddingBank(false)} />
+                ) : (
+                    <Button variant="secondary" className="border-[#FE6535]" onClick={() => setAddingBank(true)}>
+                        {banks.length > 0 ? 'Agregar otra cuenta +' : 'Agregar Cuenta +'}
+                    </Button>
+                )}
             </div>
 
             {/* Sales History */}

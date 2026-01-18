@@ -2,11 +2,13 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { updateBusiness } from "@/app/actions";
 
-export function EventGeneralForm() {
-    const [logoPreview, setLogoPreview] = useState<string | null>(null);
-    const [bannerPreview, setBannerPreview] = useState<string | null>(null);
+export function EventGeneralForm({ initialData }: { initialData: any }) {
+    const [logoPreview, setLogoPreview] = useState<string | null>(initialData?.logo || null);
+    const [bannerPreview, setBannerPreview] = useState<string | null>(initialData?.banner || null);
+    const [isPending, startTransition] = useTransition();
 
     const handleSimulateUpload = (field: "logo" | "banner") => {
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -18,8 +20,22 @@ export function EventGeneralForm() {
         else setBannerPreview(url);
     };
 
+    const handleSubmit = async (formData: FormData) => {
+        if (!initialData?.id && !formData.get('id')) return; // Safety check
+
+        startTransition(async () => {
+            // Ensure logo/banner are part of formData if not changed but previews exist
+            if (logoPreview) formData.set('logo', logoPreview);
+            if (bannerPreview) formData.set('banner', bannerPreview);
+
+            await updateBusiness(formData);
+        });
+    };
+
     return (
-        <form className="space-y-6 animate-in fade-in duration-500">
+        <form action={handleSubmit} className="space-y-6 animate-in fade-in duration-500">
+            <input type="hidden" name="id" value={initialData?.id} />
+
             {/* Header Section */}
             <div>
                 <h2 className="text-xl font-bold text-gray-900">Información de tu negocio</h2>
@@ -32,32 +48,37 @@ export function EventGeneralForm() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6">
                 <Input
                     name="name"
-                    defaultValue="TikiFest"
-                    placeholder="Nombre del evento"
+                    defaultValue={initialData?.name}
+                    placeholder="Nombre del negocio"
                     className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                 />
                 <Input
-                    name="organizer"
-                    placeholder="Organizador"
+                    name="contact"
+                    defaultValue={initialData?.contact}
+                    placeholder="Contacto"
                     className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                 />
                 <Input
                     name="phone"
+                    defaultValue={initialData?.phone}
                     placeholder="Teléfono de contacto"
                     className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                 />
                 <Input
                     name="website"
+                    defaultValue={initialData?.website}
                     placeholder="Sitio Web"
                     className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                 />
                 <Input
                     name="instagram"
+                    defaultValue={initialData?.instagram}
                     placeholder="Instagram"
                     className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                 />
                 <Input
-                    name="location"
+                    name="address"
+                    defaultValue={initialData?.address}
                     placeholder="Ubicación"
                     className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                 />
@@ -71,7 +92,7 @@ export function EventGeneralForm() {
                 </div>
 
                 <div className="space-y-6">
-                    {/* BOTÓN REAL (como Guardar cambios) */}
+                    <input type="hidden" name="logo" value={logoPreview || ''} />
                     <Button
                         type="button"
                         onClick={() => handleSimulateUpload("logo")}
@@ -98,7 +119,7 @@ export function EventGeneralForm() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* BOTÓN REAL */}
+                    <input type="hidden" name="banner" value={bannerPreview || ''} />
                     <Button
                         type="button"
                         onClick={() => handleSimulateUpload("banner")}
@@ -109,12 +130,13 @@ export function EventGeneralForm() {
 
 
                     <Input
-                        name="bannerText"
+                        name="bannerText" // This looks like UI only? No field in schema for "bannerText", mapping to "description" or leaving as visual? Schema has 'categoryMessage'.
                         placeholder="Mensaje Banner"
                         className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                     />
                     <Input
                         name="categoryMessage"
+                        defaultValue={initialData?.categoryMessage}
                         placeholder="Mensaje Categoría"
                         className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
                     />
@@ -141,8 +163,12 @@ export function EventGeneralForm() {
             </div>
 
             <div className="flex justify-start pt-4">
-                <Button type="submit" className="h-12 px-8 rounded-[8px] bg-[#FE6535] text-white hover:bg-[#e85a2f] shadow-md">
-                    Guardar cambios
+                <Button
+                    type="submit"
+                    disabled={isPending}
+                    className="h-12 px-8 rounded-[8px] bg-[#FE6535] text-white hover:bg-[#e85a2f] shadow-md disabled:opacity-50"
+                >
+                    {isPending ? "Guardando..." : "Guardar cambios"}
                 </Button>
             </div>
         </form>

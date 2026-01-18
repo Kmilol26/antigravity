@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { Clock, MapPin, Search, ChevronRight, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { createEvent, updateEvent } from "@/app/actions";
 
 const CATEGORIES = ['Zona 85', 'Restaurantes', 'Mas Visitados'];
 const SERVICES = ['Comida', 'Datáfono', 'Licores', '+9'];
@@ -19,7 +20,7 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
 
     // Form State - Initialize with initialData if present
     const [name, setName] = useState(initialData?.name || "");
-    const [requiresApproval, setRequiresApproval] = useState(false); // Default false based on screenshot (orange toggle off?) no wait, screenshot shows off but orange implies maybe on or colored when on. Let's say off.
+    const [requiresApproval, setRequiresApproval] = useState(false);
 
     // Parse initial image for preview if available
     let initialImage = "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80"; // Eventy image
@@ -30,12 +31,24 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
 
     const handleSubmit = async (formData: FormData) => {
         startTransition(async () => {
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 500));
+            // Add image and status defaults
+            if (!formData.get('images')) {
+                formData.set('images', JSON.stringify([previewImage]));
+            }
+            // For now we assume a default status if not set
+            formData.set('status', 'active');
+
+            if (initialData?.id) {
+                formData.set('id', initialData.id);
+                await updateEvent(formData);
+            } else {
+                await createEvent(formData);
+            }
+
             if (onCancel) {
                 onCancel();
             } else {
-                router.push('/events/123'); // Or refresh
+                router.refresh();
             }
         });
     };
@@ -66,7 +79,7 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
                             </div>
                         </div>
                         <Input
-                            name="name"
+                            name="title" // Changed from 'name' to 'title' to match schema/action
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="text-lg border-none border-b border-gray-200 rounded-none px-0 shadow-none focus-visible:ring-0 focus-visible:border-[#FE6535] placeholder:text-gray-300"
@@ -83,8 +96,8 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
                                 <label className="text-xs text-gray-600">Inicio</label>
                             </div>
                             <div className="flex gap-2">
-                                <Input defaultValue="vie, 30 may" className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 flex-1" />
-                                <Input defaultValue="03:00 p.m." className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 w-24" />
+                                <Input name="date" type="date" className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 flex-1" />
+                                <Input name="startTime" type="time" className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 w-24" />
                             </div>
                         </div>
 
@@ -103,8 +116,9 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
                                 <label className="text-xs text-gray-600">Fin</label>
                             </div>
                             <div className="flex gap-2">
-                                <Input defaultValue="vie, 30 may" className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 flex-1" />
-                                <Input defaultValue="04:00 p.m." className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 w-24" />
+                                {/* Only need date once usually, but keeping layout */}
+                                <Input disabled className="bg-gray-100 border-gray-200 text-center text-xs font-medium h-9 rounded-lg text-gray-400 flex-1" value="Igual" />
+                                <Input name="endTime" type="time" className="bg-white border-[#FE6535] text-center text-xs font-medium h-9 rounded-lg text-gray-700 w-24" />
                             </div>
                         </div>
                     </div>
@@ -124,9 +138,9 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
                         <div className="flex items-center justify-between border border-[#FE6535] rounded-lg p-2.5 bg-white">
                             <div className="flex items-center gap-2">
                                 <Search className="w-4 h-4 text-gray-400" />
-                                <span className="text-xs font-medium text-gray-600">Entradas</span>
+                                <span className="text-xs font-medium text-gray-600">Entradas ($)</span>
                             </div>
-                            <span className="text-xs text-gray-400 font-medium cursor-pointer">Gratis ✎</span>
+                            <Input name="price" placeholder="0" className="w-20 h-6 text-xs text-right border-none bg-transparent" />
                         </div>
 
                         <div className="flex items-center justify-between border border-[#FE6535] rounded-lg p-2.5 bg-white">
@@ -142,7 +156,7 @@ export function CreateEventForm({ onCancel, initialData }: { onCancel?: () => vo
                                 <Search className="w-4 h-4 text-gray-400" />
                                 <span className="text-xs font-medium text-gray-600">Cupo</span>
                             </div>
-                            <span className="text-xs text-gray-400 font-medium cursor-pointer">Ilimitado ✎</span>
+                            <Input name="capacity" placeholder="Ilimitado" className="w-20 h-6 text-xs text-right border-none bg-transparent" />
                         </div>
 
                         {/* Types */}

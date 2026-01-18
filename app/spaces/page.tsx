@@ -1,7 +1,7 @@
-'use client';
-
 import { EventSpacesTab } from "@/components/events/EventSpacesTab";
+import { getSpaces } from "@/app/actions";
 
-export default function SpacesPage() {
-    return <EventSpacesTab />;
+export default async function SpacesPage() {
+    const spaces = await getSpaces();
+    return <EventSpacesTab initialSpaces={spaces} />;
 }

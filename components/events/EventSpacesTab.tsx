@@ -7,21 +7,12 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 import { CreateSpaceForm } from "@/components/spaces/CreateSpaceForm";
 
-export function EventSpacesTab() {
+export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
     const [isCreating, setIsCreating] = useState(false);
     const [editingSpace, setEditingSpace] = useState<any>(null);
 
-    // Simulated spaces data to match the screenshot provided
-    const spaces = [
-        { id: '1', name: 'Tabu Studio Bar', category: 'Electronica', capacity: 200, images: '["https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80"]', price: '20.000', location: 'Cra 27 # 52-24' },
-        { id: '2', name: 'Toni-k Bar', category: 'Champeta', capacity: 150, images: '["https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80"]', price: '20.000', location: 'Cra 27 # 52-36' },
-        { id: '3', name: 'Cacao Blunt Bar', category: 'Reggaeton', capacity: 300, images: '["https://images.unsplash.com/photo-1574096079513-d82599692951?auto=format&fit=crop&q=80"]', price: '20.000', location: 'Cr 50 # 12-63' },
-        { id: '4', name: 'Octava Club', category: 'House', capacity: 500, images: '["https://images.unsplash.com/photo-1570876050997-2fdefb00c004?auto=format&fit=crop&q=80"]', price: '40.000', location: 'Cra 8 # 63-41' },
-        { id: '5', name: 'Salvador', category: 'Electronica', capacity: 250, images: '["https://images.unsplash.com/photo-1514525253440-b393452e8d26?auto=format&fit=crop&q=80"]', price: '30.000', location: 'Cl 85 # 12-71' },
-        { id: '6', name: 'Tabu Studio Bar', category: 'Electronica', capacity: 200, images: '["https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80"]', price: '20.000', location: 'Cra 27 # 52-24' },
-        { id: '7', name: 'Toni-k Bar', category: 'Champeta', capacity: 150, images: '["https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80"]', price: '20.000', location: 'Cra 27 # 52-36' },
-        { id: '8', name: 'Cacao Blunt Bar', category: 'Reggaeton', capacity: 300, images: '["https://images.unsplash.com/photo-1574096079513-d82599692951?auto=format&fit=crop&q=80"]', price: '20.000', location: 'Cr 50 # 12-63' }
-    ];
+    // Use connection to DB
+    const spaces = initialSpaces;
 
     if (isCreating) {
         return (

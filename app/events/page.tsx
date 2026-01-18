@@ -1,4 +1,4 @@
-'use client';
+
 
 import { EventNav } from "@/components/EventNav";
 import { EventsListTab } from "@/components/events/EventsListTab";
@@ -8,7 +8,10 @@ const CONTAINER = "max-w-[820px] mx-auto px-6 w-full";
 const eventName = "TikiFest";
 
 // Using a Page instead of Layout+Page for /events to avoid conflict with /events/[id] nested layouts
-export default function GlobalEventsPage() {
+import { getEvents } from "@/app/actions";
+
+export default async function GlobalEventsPage() {
+    const events = await getEvents();
     return (
         <div className="min-h-screen bg-white animate-in fade-in duration-500">
             {/* Header */}
@@ -26,7 +29,7 @@ export default function GlobalEventsPage() {
             <EventNav eventId="123" activeTab="Eventos" />
 
             <div className={cn(CONTAINER, "py-8 space-y-8")}>
-                <EventsListTab />
+                <EventsListTab initialEvents={events} />
             </div>
         </div>
     );

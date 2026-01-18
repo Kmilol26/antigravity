@@ -26,6 +26,25 @@ model Business {
   plan            Plan?    @relation(fields: [planId], references: [id])
   planId          String?
   invoices        Invoice[]
+  paymentMethods  PaymentMethod[]
+}
+
+model PaymentMethod {
+  id        String   @id @default(uuid())
+  type      String   // "card" or "bank"
+  // Card details
+  last4     String?
+  brand     String?  // Visa, Mastercard
+  expiry    String?
+  // Bank details
+  bankName  String?
+  accountType String? // Ahorros, Corriente
+  accountNumber String?
+  
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  business  Business @relation(fields: [businessId], references: [id])
+  businessId String
 }
 
 model Space {
