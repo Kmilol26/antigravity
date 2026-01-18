@@ -276,7 +276,9 @@ export async function createPaymentMethod(formData: FormData) {
     const type = formData.get('type') as string
 
     // Extract common
-    const last4 = (formData.get('last4') as string) || (formData.get('accountNumber') as string)?.slice(-4) || '****';
+    // Extract common - Security: Slice last 4 digits only!
+    const rawNumber = (formData.get('last4') as string) || (formData.get('accountNumber') as string) || '';
+    const last4 = rawNumber.length > 4 ? rawNumber.slice(-4) : rawNumber || '****';
 
     // Extract specific
     const bankName = formData.get('bankName') as string || undefined;
