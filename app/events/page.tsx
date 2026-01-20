@@ -13,7 +13,7 @@ import { getEvents } from "@/app/actions";
 export default async function GlobalEventsPage() {
     const events = await getEvents();
     return (
-        <div className="min-h-screen bg-white animate-in fade-in duration-500">
+        <div className="min-h-screen animate-in fade-in duration-500">
             {/* Header */}
             <div className={cn(CONTAINER, "py-1 flex justify-between items-center")}>
                 <div className="flex items-center gap-3">

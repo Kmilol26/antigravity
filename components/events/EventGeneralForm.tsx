@@ -33,7 +33,7 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
     };
 
     return (
-        <form action={handleSubmit} className="space-y-6 animate-in fade-in duration-500">
+        <form action={handleSubmit} className="space-y-6 animate-in fade-in duration-500 max-w-[820px] mx-auto pb-20">
             <input type="hidden" name="id" value={initialData?.id} />
 
             {/* Header Section */}
@@ -45,42 +45,42 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
             </div>
 
             {/* Inputs Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Input
                     name="name"
                     defaultValue={initialData?.name}
                     placeholder="Nombre del negocio"
-                    className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                    className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                 />
                 <Input
                     name="contact"
                     defaultValue={initialData?.contact}
                     placeholder="Contacto"
-                    className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                    className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                 />
                 <Input
                     name="phone"
                     defaultValue={initialData?.phone}
                     placeholder="Teléfono de contacto"
-                    className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                    className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                 />
                 <Input
                     name="website"
                     defaultValue={initialData?.website}
                     placeholder="Sitio Web"
-                    className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                    className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                 />
                 <Input
                     name="instagram"
                     defaultValue={initialData?.instagram}
                     placeholder="Instagram"
-                    className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                    className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                 />
                 <Input
                     name="address"
                     defaultValue={initialData?.address}
                     placeholder="Ubicación"
-                    className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                    className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                 />
             </div>
 
@@ -96,12 +96,12 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
                     <Button
                         type="button"
                         onClick={() => handleSimulateUpload("logo")}
-                        className="h-12 px-6 rounded-[8px] bg-[#FE6535] text-white hover:bg-[#e85a2f] shadow-md"
+                        className="h-12 px-6 rounded-xl bg-[#FE6535] text-white hover:bg-[#FF7A50] hover:scale-105 shadow-lg shadow-orange-500/20 transition-all duration-200 border-none"
                     >
                         Subir Logo
                     </Button>
 
-                    <div className="h-24 w-24 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-xs overflow-hidden shadow-sm">
+                    <div className="h-24 w-24 rounded-full glass-panel flex items-center justify-center text-pink-600 text-xs overflow-hidden shadow-sm bg-pink-50">
                         {logoPreview ? (
                             <img src={logoPreview} className="h-full w-full object-cover" alt="Logo" />
                         ) : (
@@ -123,27 +123,27 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
                     <Button
                         type="button"
                         onClick={() => handleSimulateUpload("banner")}
-                        className="h-12 px-6 rounded-[8px] bg-[#FE6535] text-white hover:bg-[#e85a2f] shadow-md"
+                        className="h-12 px-6 rounded-xl bg-[#FE6535] text-white hover:bg-[#FF7A50] hover:scale-105 shadow-lg shadow-orange-500/20 transition-all duration-200 border-none"
                     >
                         Subir Portada
                     </Button>
 
 
                     <Input
-                        name="bannerText" // This looks like UI only? No field in schema for "bannerText", mapping to "description" or leaving as visual? Schema has 'categoryMessage'.
+                        name="bannerText"
                         placeholder="Mensaje Banner"
-                        className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                        className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                     />
                     <Input
                         name="categoryMessage"
                         defaultValue={initialData?.categoryMessage}
                         placeholder="Mensaje Categoría"
-                        className="border-[#FE6535] focus:border-[#FE6535] rounded-[8px] h-12 text-gray-600 placeholder:text-gray-400 bg-white shadow-none"
+                        className="glass-input h-12 text-gray-700 placeholder:text-gray-500"
                     />
                 </div>
 
                 {/* PREVIEW SIEMPRE VISIBLE */}
-                <div className="relative w-full h-48 rounded-[12px] overflow-hidden mt-6 shadow-md group">
+                <div className="relative w-full h-48 rounded-[12px] overflow-hidden mt-6 shadow-md group glass-panel">
                     {bannerPreview ? (
                         <img
                             src={bannerPreview}
@@ -151,11 +151,11 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
                             className="w-full h-full object-cover brightness-75 group-hover:brightness-90 transition-all"
                         />
                     ) : (
-                        <div className="w-full h-full bg-gray-200" />
+                        <div className="w-full h-full bg-gray-100" />
                     )}
 
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                        <h2 className="text-3xl font-bold text-white tracking-tight drop-shadow-md">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight drop-shadow-md">
                             ¡Evento <br /> Increíble!
                         </h2>
                     </div>
@@ -166,7 +166,7 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
                 <Button
                     type="submit"
                     disabled={isPending}
-                    className="h-12 px-8 rounded-[8px] bg-[#FE6535] text-white hover:bg-[#e85a2f] shadow-md disabled:opacity-50"
+                    className="h-12 px-8 rounded-xl bg-[#FE6535] text-white hover:bg-[#FF7A50] hover:scale-105 shadow-lg shadow-orange-500/30 transition-all duration-200 border-none disabled:opacity-50 disabled:hover:scale-100"
                 >
                     {isPending ? "Guardando..." : "Guardar cambios"}
                 </Button>

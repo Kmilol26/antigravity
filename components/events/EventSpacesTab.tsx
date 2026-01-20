@@ -39,7 +39,7 @@ export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
                     <Button
                         variant="secondary"
                         size="sm"
-                        className="bg-[#FEF3C7] text-[#D97706] hover:bg-[#FDE68A] text-xs font-bold border-none shadow-sm"
+                        className="bg-amber-100 text-amber-700 hover:bg-amber-200 text-xs font-bold border-none shadow-sm"
                     >
                         Ver categoría ↗
                     </Button>
@@ -47,36 +47,36 @@ export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
 
                 {/* Metrics Pills */}
                 <div className="flex flex-wrap gap-4">
-                    <div className="flex items-center gap-3 px-5 h-12 bg-white border border-[#FE6535] rounded-xl shadow-sm min-w-[180px]">
+                    <div className="glass-panel flex items-center gap-3 px-5 h-12 min-w-[180px]">
                         <span className="text-base font-semibold text-gray-700">Espacios</span>
 
-                        <span className="ml-auto bg-[#A7F3D0] text-[#065F46] text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none">
+                        <span className="ml-auto bg-green-100 text-green-700 text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none shadow-sm">
                             14
                         </span>
                     </div>
 
-                    <div className="flex items-center gap-3 px-5 h-12 bg-white border border-[#FE6535] rounded-xl shadow-sm min-w-[220px]">
+                    <div className="glass-panel flex items-center gap-3 px-5 h-12 min-w-[220px]">
                         <span className="text-base font-semibold text-gray-700">Ubicación</span>
 
-                        <span className="ml-auto bg-[#FECACA] text-[#991B1B] text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none whitespace-nowrap">
+                        <span className="ml-auto bg-red-100 text-red-700 text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none whitespace-nowrap shadow-sm">
                             Bogota
                         </span>
                     </div>
                 </div>
 
                 {/* Filters Bar */}
-                <div className="flex flex-wrap items-center gap-3 bg-white h-12 px-4 rounded-2xl border shadow-sm w-fit">
+                <div className="glass-panel flex flex-wrap items-center gap-3 h-12 px-4 w-fit">
                     <span className="text-base font-bold text-gray-700 mr-2">Categorias</span>
 
-                    <button className="h-6 px-3 inline-flex items-center justify-center bg-[#A7F3D0] text-[#065F46] text-base font-bold rounded-lg hover:opacity-80 transition-opacity">
+                    <button className="h-6 px-3 inline-flex items-center justify-center bg-green-100 text-green-700 text-xs font-bold rounded-lg hover:bg-green-200 transition-colors shadow-sm">
                         Zona 85
                     </button>
 
-                    <button className="h-6 px-3 inline-flex items-center justify-center bg-[#DDD6FE] text-[#5B21B6] text-base font-bold rounded-lg hover:opacity-80 transition-opacity">
+                    <button className="h-6 px-3 inline-flex items-center justify-center bg-purple-100 text-purple-700 text-xs font-bold rounded-lg hover:bg-purple-200 transition-colors shadow-sm">
                         Restaurantes
                     </button>
 
-                    <button className="h-6 px-3 inline-flex items-center justify-center bg-[#FED7AA] text-[#9A3412] text-base font-bold rounded-lg hover:opacity-80 transition-opacity whitespace-nowrap">
+                    <button className="h-6 px-3 inline-flex items-center justify-center bg-orange-100 text-orange-700 text-xs font-bold rounded-lg hover:bg-orange-200 transition-colors whitespace-nowrap shadow-sm">
                         Mas Visitados
                     </button>
                 </div>
@@ -85,7 +85,7 @@ export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
                 <div className="flex gap-4">
                     <Button
                         onClick={() => { setEditingSpace(null); setIsCreating(true); }}
-                        className="bg-[#FE6535] hover:bg-[#E55A28] text-white shadow-md rounded-xl px-8 h-10 font-medium"
+                        className="bg-[#FE6535] hover:bg-[#E55A28] text-white shadow-lg shadow-orange-500/30 rounded-xl px-8 h-10 font-medium hover:scale-105 transition-all"
                     >
                         Crear Espacio
                     </Button>
@@ -98,18 +98,18 @@ export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#FE6535]" />
                         <Input
                             placeholder="Busca tu espacio"
-                            className="pl-10 border-[#FE6535]/30 focus:border-[#FE6535] rounded-full bg-white h-10 shadow-sm"
+                            className="pl-10 glass-input h-10 shadow-sm"
                         />
                     </div>
                 </div>
 
                 {/* Grid */}
-                <div className="flex flex-wrap gap-[10.5px]">
+                <div className="flex flex-wrap gap-[10.5px] justify-center sm:justify-start">
                     {spaces.map((space) => (
                         <SpaceCard
                             key={space.id}
                             space={space}
-                            className="w-[185px] h-[242px] aspect-auto"
+                            className="w-full sm:w-[185px] h-auto sm:h-[242px] aspect-auto"
                             onClick={(s) => {
                                 setEditingSpace(s);
                                 setIsCreating(true);

@@ -41,13 +41,13 @@ async function main() {
         }
     })
 
-    // 3. Create Spaces (Matching UI Mockup)
+    // 3. Create Spaces (Matching UI Mockup) - With attractive Unsplash images
     const spaceData = [
-        { name: 'Tabu Studio Bar', category: 'Electronica', capacity: 200, price: 20.000, images: JSON.stringify(['https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80']), location: 'Cra 27 # 52-24' },
-        { name: 'Toni-k Bar', category: 'Champeta', capacity: 150, price: 20.000, images: JSON.stringify(['https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80']), location: 'Cra 27 # 52-36' },
-        { name: 'Cacao Blunt Bar', category: 'Reggaeton', capacity: 300, price: 20.000, images: JSON.stringify(['https://images.unsplash.com/photo-1574096079513-d82599692951?auto=format&fit=crop&q=80']), location: 'Cr 50 # 12-63' },
-        { name: 'Octava Club', category: 'House', capacity: 500, price: 40.000, images: JSON.stringify(['https://images.unsplash.com/photo-1570876050997-2fdefb00c004?auto=format&fit=crop&q=80']), location: 'Cra 8 # 63-41' },
-        { name: 'Salvador', category: 'Electronica', capacity: 250, price: 30.000, images: JSON.stringify(['https://images.unsplash.com/photo-1514525253440-b393452e8d26?auto=format&fit=crop&q=80']), location: 'Cl 85 # 12-71' },
+        { name: 'Tabu Studio Bar', category: 'Electronica', capacity: 200, price: 20000, images: JSON.stringify(['https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&h=800&fit=crop']), location: 'Cra 27 # 52-24' },
+        { name: 'Toni-k Bar', category: 'Champeta', capacity: 150, price: 20000, images: JSON.stringify(['https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=800&fit=crop']), location: 'Cra 27 # 52-36' },
+        { name: 'Cacao Blunt Bar', category: 'Reggaeton', capacity: 300, price: 20000, images: JSON.stringify(['https://images.unsplash.com/photo-1545128485-c400e7702796?w=600&h=800&fit=crop']), location: 'Cr 50 # 12-63' },
+        { name: 'Octava Club', category: 'House', capacity: 500, price: 40000, images: JSON.stringify(['https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=800&fit=crop']), location: 'Cra 8 # 63-41' },
+        { name: 'Salvador', category: 'Electronica', capacity: 250, price: 30000, images: JSON.stringify(['https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=800&fit=crop']), location: 'Cl 85 # 12-71' },
     ]
 
     const createdSpaces = []
@@ -69,7 +69,7 @@ async function main() {
     const space1 = createdSpaces[0] // Tabu
     const space2 = createdSpaces[1] // Toni-k
 
-    // 4. Create Events
+    // 4. Create Events - With attractive Unsplash images
     const event1 = await prisma.event.create({
         data: {
             title: 'Sunset Party',
@@ -81,7 +81,7 @@ async function main() {
             price: 50.00,
             status: 'published',
             spaceId: space1.id,
-            images: JSON.stringify(['https://placehold.co/600x400/orange/white?text=Sunset']),
+            images: JSON.stringify(['https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=800&fit=crop']),
         }
     })
 
@@ -96,7 +96,7 @@ async function main() {
             price: 30.00,
             status: 'published',
             spaceId: space2.id,
-            images: JSON.stringify(['https://placehold.co/600x400/red/white?text=Salsa']),
+            images: JSON.stringify(['https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=800&fit=crop']),
         }
     })
 

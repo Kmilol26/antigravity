@@ -86,7 +86,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 </div>
 
                 <Select defaultValue="all">
-                    <SelectTrigger className="w-[280px] h-10 border-[#FE6535] text-sm font-medium rounded-lg">
+                    <SelectTrigger className="w-[280px] h-10 glass-input text-sm font-medium rounded-xl">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -102,10 +102,10 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Actividad</h3>
 
                 <div className="grid grid-cols-2 gap-6">
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-                                <DollarSign className="w-5 h-5 text-purple-500" />
+                    <div className="glass-card flex items-start gap-4 p-4">
+                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center shadow-sm">
+                                <DollarSign className="w-5 h-5 text-purple-600" />
                             </div>
                         </div>
                         <div>
@@ -114,9 +114,9 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                    <div className="glass-card flex items-start gap-4 p-4">
+                        <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center shadow-sm">
                                 <Ticket className="w-5 h-5 text-green-600" />
                             </div>
                         </div>
@@ -126,10 +126,10 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-                                <Lock className="w-5 h-5 text-yellow-500" />
+                    <div className="glass-card flex items-start gap-4 p-4">
+                        <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center shadow-sm">
+                                <Lock className="w-5 h-5 text-yellow-600" />
                             </div>
                         </div>
                         <div>
@@ -138,10 +138,10 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                         </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
-                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-                                <Package className="w-5 h-5 text-orange-500" />
+                    <div className="glass-card flex items-start gap-4 p-4">
+                        <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center shadow-sm">
+                                <Package className="w-5 h-5 text-orange-600" />
                             </div>
                         </div>
                         <div>
@@ -151,7 +151,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                     </div>
                 </div>
 
-                <Button className="mt-6 bg-[#FE6535] px-6 py-2 rounded-lg text-white">Cobrar</Button>
+                <Button className="mt-6 bg-[#FE6535] px-6 py-2 rounded-xl text-white shadow-lg shadow-orange-500/30 hover:bg-[#FF7A50] hover:scale-105 transition-all">Cobrar</Button>
             </div>
 
             {/* Plan tikipal */}
@@ -159,40 +159,42 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Plan tikipal</h3>
                 <p className="text-sm text-gray-600 mb-4">Resumen de suscripciones y espacios activos</p>
 
-                <div className="grid grid-cols-3 gap-6 items-start">
-                    <div className="flex flex-col items-start text-left">
-                        <div className="text-sm text-gray-700">Plan vigente</div>
-                        <div className="text-4xl font-light text-[#9747FF]">Basic</div>
+                <div className="glass-panel p-6">
+                    <div className="grid grid-cols-3 gap-6 items-start">
+                        <div className="flex flex-col items-start text-left">
+                            <div className="text-sm text-gray-600 font-medium">Plan vigente</div>
+                            <div className="text-4xl font-light text-[#9747FF]">Basic</div>
+                        </div>
+
+                        <div className="flex flex-col items-start text-left">
+                            <div className="text-sm text-gray-600 font-medium">Costo plan</div>
+                            <div className="text-4xl font-light text-[#FE6535]">29 USD</div>
+                            <div className="text-xs text-gray-500">USD al mes</div>
+                        </div>
+
+                        <div className="flex flex-col items-start text-left">
+                            <div className="text-sm text-gray-600 font-medium">Emisiones extra</div>
+                            <div className="text-4xl font-light text-[#FE6535]">7.2¢</div>
+                            <div className="text-xs text-gray-500">(300 COP)</div>
+                        </div>
                     </div>
 
-                    <div className="flex flex-col items-start text-left">
-                        <div className="text-sm text-gray-700">Costo plan</div>
-                        <div className="text-4xl font-light text-[#FE6535]">29 USD</div>
-                        <div className="text-xs text-gray-500">USD al mes</div>
-                    </div>
+                    <div className="grid grid-cols-3 gap-6 mt-6 pt-6 border-t border-gray-100">
+                        <div>
+                            <div className="text-sm text-gray-600 font-medium">Espacios activos</div>
+                            <div className="text-4xl font-light text-[#FE6535]">10</div>
+                        </div>
 
-                    <div className="flex flex-col items-start text-left">
-                        <div className="text-sm text-gray-700">Emisiones extra</div>
-                        <div className="text-4xl font-light text-[#FE6535]">7.2¢</div>
-                        <div className="text-xs text-gray-500">(300 COP)</div>
+                        <div className="col-start-2">
+                            <div className="text-sm text-gray-600 font-medium">Total facturado</div>
+                            <div className="text-4xl font-light text-[#FE6535]">300 USD</div>
+                        </div>
+
+                        <div />
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-6 mt-6">
-                    <div>
-                        <div className="text-sm text-gray-700">Espacios activos</div>
-                        <div className="text-4xl font-light text-[#FE6535]">10</div>
-                    </div>
-
-                    <div className="col-start-2">
-                        <div className="text-sm text-gray-700">Total facturado</div>
-                        <div className="text-4xl font-light text-[#FE6535]">300 USD</div>
-                    </div>
-
-                    <div />
-                </div>
-
-                <Button className="mt-6 bg-[#FE6535] px-6 py-2 rounded-lg text-white">Aumenta tu plan</Button>
+                <Button className="mt-6 bg-[#FE6535] px-6 py-2 rounded-xl text-white shadow-lg shadow-orange-500/30 hover:bg-[#FF7A50] hover:scale-105 transition-all">Aumenta tu plan</Button>
             </div>
 
             {/* Plan Comparisons */}
@@ -200,7 +202,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 <div className="mb-6">
                     <h3 className="text-xl font-bold text-gray-900">Resumen de tu plan</h3>
                     <div className="flex items-center gap-2 mt-1">
-                        <button className="text-xs font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
+                        <button className="text-xs font-medium text-green-700 bg-green-100 px-3 py-1 rounded-full">
                             Para empresas sencillas
                         </button>
                     </div>
@@ -211,7 +213,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                         const isCurrent = idx === 0;
                         return (
                             <div key={plan.name} className="max-w-[323px] w-full h-[592px]">
-                                <div className="border border-[#FE6535] rounded-xl bg-white p-3 flex flex-col h-full">
+                                <div className={`glass-panel p-3 flex flex-col h-full hover:shadow-lg transition-shadow ${isCurrent ? 'ring-2 ring-green-400 shadow-green-100' : ''}`}>
                                     <div className="flex items-start justify-between mb-3">
                                         <div className="min-w-0">
                                             <h4 className={`text-2xl font-medium leading-tight truncate ${isCurrent ? 'bg-gradient-to-r from-[#FE6EA1] to-[#9747FF] bg-clip-text text-transparent' : idx === 1 ? 'bg-gradient-to-r from-[#9747FF] to-[#FE6EA1] bg-clip-text text-transparent' : 'bg-gradient-to-r from-[#FE6535] to-[#9747FF] bg-clip-text text-transparent'}`}>{plan.name.replace('Plan ', '')}</h4>
@@ -248,7 +250,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                                                         <Check className="w-3 h-3 text-gray-600 flex-shrink-0 mt-0.5" />
                                                         <div className="flex items-center gap-2">
                                                             {feature.badge && (
-                                                                <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${idx === 0 ? 'bg-green-100 text-green-800' : idx === 1 ? 'bg-amber-100 text-amber-700' : 'bg-violet-100 text-violet-700'}`}>{feature.badge}</span>
+                                                                <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${feature.color ? feature.color : 'bg-gray-100'}`}>{feature.badge}</span>
                                                             )}
                                                             <span className="text-sm text-gray-700">{feature.text}</span>
                                                         </div>
@@ -260,7 +262,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
 
                                     {!isCurrent && (
                                         <div className="mt-2">
-                                            <Button className="w-full py-2 text-sm bg-[#FE6535] hover:bg-[#e85c30] text-white font-medium rounded-md">Aumenta tu plan</Button>
+                                            <Button className="w-full py-2 text-sm bg-[#FE6535] hover:bg-[#e85c30] text-white font-medium rounded-xl shadow-md">Aumenta tu plan</Button>
                                         </div>
                                     )}
                                 </div>
@@ -271,7 +273,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
             </div>
 
             {/* Payment Method */}
-            <div className="border border-[#FE6535] rounded-xl p-6 bg-white transition-all">
+            <div className="glass-panel p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Método de pago (Tarjetas)</h3>
                 <p className="text-xs text-gray-500 mb-4">Añade una tarjeta para continuar operaciones</p>
 
@@ -279,7 +281,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 {cards.length > 0 && (
                     <div className="mb-4 space-y-2">
                         {cards.map((card: any) => (
-                            <div key={card.id} className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+                            <div key={card.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-gray-50">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-6 bg-gray-800 rounded text-white flex items-center justify-center text-[10px]">Your</div>
                                     <span className="text-sm font-medium">**** {card.last4}</span>
@@ -293,20 +295,18 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                     <CreditCardForm onCancel={() => setAddingCard(false)} onSuccess={() => setAddingCard(false)} />
                 ) : (
                     <div className="flex flex-col gap-3">
-
-                        {/* Icons ... */}
                         {cards.length === 0 && (
                             <div className="flex gap-3">
-                                <div className="w-12 h-8 bg-blue-600 rounded flex items-center justify-center">
+                                <div className="w-12 h-8 bg-blue-600 rounded flex items-center justify-center shadow-sm">
                                     <CreditCard className="w-6 h-6 text-white" />
                                 </div>
-                                <div className="w-12 h-8 bg-red-600 rounded flex items-center justify-center">
+                                <div className="w-12 h-8 bg-red-600 rounded flex items-center justify-center shadow-sm">
                                     <CreditCard className="w-6 h-6 text-white" />
                                 </div>
                             </div>
                         )}
 
-                        <Button variant="secondary" className="border-[#FE6535] self-start" onClick={() => setAddingCard(true)}>
+                        <Button variant="secondary" className="border-gray-200 bg-white self-start hover:bg-gray-50" onClick={() => setAddingCard(true)}>
                             {cards.length > 0 ? 'Agregar otra tarjeta +' : 'Agregar Tarjeta +'}
                         </Button>
                     </div>
@@ -314,7 +314,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
             </div>
 
             {/* Bank Account */}
-            <div className="border border-[#FE6535] rounded-xl p-6 bg-white transition-all">
+            <div className="glass-panel p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Cuenta bancaria</h3>
                 <p className="text-xs text-gray-500 mb-4">Registra una cuenta de cliente para recibir pagos</p>
 
@@ -322,7 +322,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 {banks.length > 0 && (
                     <div className="mb-4 space-y-2">
                         {banks.map((bank: any) => (
-                            <div key={bank.id} className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
+                            <div key={bank.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg bg-gray-50">
                                 <div className="flex items-center gap-3">
                                     <Building2 className="w-5 h-5 text-gray-600" />
                                     <div className="flex flex-col">
@@ -338,7 +338,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                 {addingBank ? (
                     <BankAccountForm onCancel={() => setAddingBank(false)} onSuccess={() => setAddingBank(false)} />
                 ) : (
-                    <Button variant="secondary" className="border-[#FE6535]" onClick={() => setAddingBank(true)}>
+                    <Button variant="secondary" className="border-gray-200 bg-white hover:bg-gray-50" onClick={() => setAddingBank(true)}>
                         {banks.length > 0 ? 'Agregar otra cuenta +' : 'Agregar Cuenta +'}
                     </Button>
                 )}
@@ -347,24 +347,24 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
             {/* Sales History */}
             <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Historial de ventas</h3>
-                <div className="border border-[#FE6535] rounded-xl overflow-hidden">
+                <div className="glass-panel overflow-hidden">
                     <table className="w-full text-xs">
-                        <thead className="bg-gray-50 border-b border-[#FE6535]">
+                        <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="text-left p-3 font-medium text-gray-600">Entidad</th>
-                                <th className="text-left p-3 font-medium text-gray-600">Fecha</th>
-                                <th className="text-right p-3 font-medium text-gray-600">Monto</th>
-                                <th className="text-center p-3 font-medium text-gray-600">Estado</th>
+                                <th className="text-left p-3 font-medium text-gray-700">Entidad</th>
+                                <th className="text-left p-3 font-medium text-gray-700">Fecha</th>
+                                <th className="text-right p-3 font-medium text-gray-700">Monto</th>
+                                <th className="text-center p-3 font-medium text-gray-700">Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             {salesHistory.map((sale, idx) => (
-                                <tr key={idx} className="border-b border-gray-100 last:border-0">
-                                    <td className="p-3 text-gray-700 flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                <tr key={idx} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                                    <td className="p-3 text-gray-800 flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div>
                                         {sale.entity}
                                     </td>
-                                    <td className="p-3 text-gray-500">{sale.date}</td>
+                                    <td className="p-3 text-gray-600">{sale.date}</td>
                                     <td className="p-3 text-right font-bold text-gray-900">{sale.amount}</td>
                                     <td className="p-3 text-center">
                                         <span className={`px-2 py-1 rounded-full text-[10px] font-bold ${sale.statusColor}`}>
@@ -381,24 +381,24 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
             {/* Payment History */}
             <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Historial de pagos</h3>
-                <div className="border border-[#FE6535] rounded-xl overflow-hidden">
+                <div className="glass-panel overflow-hidden">
                     <table className="w-full text-xs">
-                        <thead className="bg-gray-50 border-b border-[#FE6535]">
+                        <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="text-left p-3 font-medium text-gray-600">Entidad</th>
-                                <th className="text-left p-3 font-medium text-gray-600">Fecha</th>
-                                <th className="text-right p-3 font-medium text-gray-600">Monto</th>
-                                <th className="text-center p-3 font-medium text-gray-600">Estado</th>
+                                <th className="text-left p-3 font-medium text-gray-700">Entidad</th>
+                                <th className="text-left p-3 font-medium text-gray-700">Fecha</th>
+                                <th className="text-right p-3 font-medium text-gray-700">Monto</th>
+                                <th className="text-center p-3 font-medium text-gray-700">Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             {paymentHistory.map((payment, idx) => (
-                                <tr key={idx} className="border-b border-gray-100 last:border-0">
-                                    <td className="p-3 text-gray-700 flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                <tr key={idx} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                                    <td className="p-3 text-gray-800 flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-red-500 shadow-sm"></div>
                                         {payment.entity}
                                     </td>
-                                    <td className="p-3 text-gray-500">{payment.date}</td>
+                                    <td className="p-3 text-gray-600">{payment.date}</td>
                                     <td className="p-3 text-right font-bold text-gray-900">{payment.amount}</td>
                                     <td className="p-3 text-center">
                                         <span className={`px-2 py-1 rounded-full text-[10px] font-bold ${payment.statusColor}`}>

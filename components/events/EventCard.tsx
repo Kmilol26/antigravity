@@ -1,69 +1,111 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Calendar, Clock, Edit, MapPin, Trash, Users } from "lucide-react";
+import { ChevronRight, MapPin, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 
-export function EventCard({ event }: { event: any }) {
+export function EventCard({ event, onClick }: { event: any, onClick?: (event: any) => void }) {
+    // Attractive fallback images for events (parties, concerts, festivals)
+    const fallbackImages = [
+        'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=800&fit=crop', // Festival sunset
+        'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=800&fit=crop', // Concert crowd
+        'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&h=800&fit=crop', // Night party
+        'https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=600&h=800&fit=crop', // Stage lights
+        'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=800&fit=crop', // Neon party
+    ];
+
     let images = [];
     try { images = JSON.parse(event.images); } catch (e) { images = []; }
-    const coverImage = images[0] || 'https://placehold.co/600x400/f3f4f6/6b7280?text=Event';
+
+    // Use parsed image or pick a fallback based on event id/title
+    const fallbackIndex = (event.id?.charCodeAt?.(0) || event.title?.length || 0) % fallbackImages.length;
+    const coverImage = images[0] || fallbackImages[fallbackIndex];
+
+    // Format price
+    const priceFormatted = event.price ? `$${event.price.toLocaleString('es-CO')}` : '$20.000';
+
+    // Categories - use space name or fallback
+    const categories = event.space?.name || event.category || 'Evento · Fiesta';
+
+    // Format date
+    const eventDate = new Date(event.date);
+    const formattedDate = format(eventDate, "d 'de' MMMM", { locale: es });
 
     return (
-        <div className="group relative flex flex-col overflow-hidden rounded-2xl bg-white transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-transparent hover:border-gray-100">
-            {/* Image Container with Aspect Ratio */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-50">
+        <div
+            onClick={() => onClick && onClick(event)}
+            className={cn(
+                "group relative aspect-[3/4] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300",
+                "hover:scale-[1.02] hover:shadow-2xl"
+            )}
+        >
+            {/* Background Image */}
+            <div className="absolute inset-0">
                 <img
                     src={coverImage}
                     alt={event.title}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
+                {/* Gradient Overlay - dark at bottom for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+            </div>
 
-                {/* Glass Badge for Status */}
-                <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full glass px-3 py-1 text-[11px] font-medium tracking-wide text-gray-800">
-                    <span className={cn("h-1.5 w-1.5 rounded-full shadow-[0_0_8px_rgba(0,0,0,0.2)]", event.status === 'published' ? 'bg-emerald-500' : 'bg-amber-500')} />
+            {/* Status Badge - Top Left */}
+            <div className="absolute top-3 left-3">
+                <div className={cn(
+                    "flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-medium backdrop-blur-sm",
+                    event.status === 'published'
+                        ? 'bg-green-500/80 text-white'
+                        : 'bg-amber-500/80 text-white'
+                )}>
+                    <span className="h-1.5 w-1.5 rounded-full bg-white shadow-sm" />
                     {event.status === 'published' ? 'Publicado' : 'Borrador'}
-                </div>
-
-                {/* Date Badge (Luma Style - often on top of image or very clean below) */}
-                <div className="absolute bottom-3 left-3 glass px-3 py-1.5 rounded-lg flex flex-col items-center justify-center min-w-[50px]">
-                    <span className="text-[10px] uppercase font-bold text-red-500 leading-none">{format(new Date(event.date), "MMM", { locale: es })}</span>
-                    <span className="text-lg font-bold text-gray-900 leading-tight">{format(new Date(event.date), "d")}</span>
                 </div>
             </div>
 
-            {/* Content Body */}
-            <div className="flex flex-1 flex-col p-4 pt-5">
-                <div className="mb-4">
-                    <h3 className="font-bold text-[17px] leading-snug text-gray-900 mb-1 group-hover:text-gray-700 transition-colors">
+            {/* Date Badge - Top Right */}
+            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/10">
+                <div className="flex flex-col items-center">
+                    <span className="text-[10px] uppercase font-bold text-[#FE6535] leading-none">
+                        {format(eventDate, "MMM", { locale: es })}
+                    </span>
+                    <span className="text-lg font-bold text-white leading-tight">
+                        {format(eventDate, "d")}
+                    </span>
+                </div>
+            </div>
+
+            {/* Content Overlay */}
+            <div className="absolute inset-0 p-4 flex flex-col justify-end text-white">
+
+                {/* Title & Category */}
+                <div className="space-y-1 mb-2">
+                    <h3 className="font-bold text-xl leading-tight drop-shadow-md">
                         {event.title}
                     </h3>
-                    <div className="flex items-center gap-1.5 text-gray-500 text-[13px]">
-                        <MapPin className="w-3.5 h-3.5" />
-                        <span className="truncate">{event.space?.name || 'Ubicación por definir'}</span>
-                    </div>
+                    <p className="text-xs text-gray-300 font-medium truncate">
+                        {categories}
+                    </p>
                 </div>
 
-                {/* Metadata Row */}
-                <div className="flex items-center gap-4 text-[13px] text-gray-500 mb-5">
-                    <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{format(new Date(event.startTime), "HH:mm")}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5" />
-                        <span>{event.capacity}</span>
-                    </div>
+                {/* Location Row */}
+                <div className="flex items-center gap-1.5 text-xs text-gray-300 mb-3">
+                    <MapPin className="w-3.5 h-3.5 text-[#FE6535]" />
+                    <span className="truncate">{event.space?.name || 'Ubicación por definir'}</span>
                 </div>
 
-                {/* Actions - Subtle and Clean: Always visible for admin dash usability */}
-                <div className="mt-auto grid grid-cols-2 gap-2 pt-2">
-                    <Link href={`/events/${event.id}/edit`} className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), "text-gray-500 hover:text-gray-900 border border-transparent hover:bg-gray-50 h-8 rounded-lg text-xs font-medium")}>
-                        Editar
-                    </Link>
-                    <Link href={`/sales?eventId=${event.id}`} className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), "border-gray-200 text-gray-700 hover:border-gray-900 hover:text-gray-900 h-8 rounded-lg text-xs font-medium shadow-sm")}>
-                        Ver Ventas
+                {/* Bottom Row: Price + Arrow Button */}
+                <div className="flex items-center justify-between">
+                    {/* Price Badge */}
+                    <span className="text-lg font-bold text-white">
+                        {priceFormatted}
+                    </span>
+
+                    {/* Arrow Action Button */}
+                    <Link href={`/events/${event.id}`}>
+                        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-lg">
+                            <ChevronRight className="w-5 h-5" />
+                        </div>
                     </Link>
                 </div>
             </div>

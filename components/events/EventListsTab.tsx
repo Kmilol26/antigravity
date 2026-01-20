@@ -34,9 +34,9 @@ export function EventListsTab() {
                     <h3 className="font-bold text-xl text-gray-900">Espacios o eventos activos</h3>
                     <p className="text-base text-gray-500">Selecciona el espacio/evento</p>
                     <Select defaultValue="Monaco">
-                        <SelectTrigger className="w-[280px] h-10 border-[#FE6535] text-sm font-medium text-gray-700 rounded-lg bg-white">
+                        <SelectTrigger className="w-[280px] h-10 glass-input text-sm font-medium text-gray-700">
                             <div className="flex items-center gap-2">
-                                <Ticket className="w-3.5 h-3.5 text-gray-400" />
+                                <Ticket className="w-3.5 h-3.5 text-gray-500" />
                                 <SelectValue placeholder="Selecciona..." />
                             </div>
                         </SelectTrigger>
@@ -51,9 +51,9 @@ export function EventListsTab() {
                     <h3 className="font-bold text-xl text-gray-900">Fechas activas</h3>
                     <p className="text-base text-gray-500">Selecciona la fecha </p>
                     <Select defaultValue="jun05">
-                        <SelectTrigger className="w-[280px] h-10 border-[#FE6535] text-sm font-medium text-gray-700 rounded-lg bg-white">
+                        <SelectTrigger className="w-[280px] h-10 glass-input text-sm font-medium text-gray-700">
                             <div className="flex items-center gap-2">
-                                <Ticket className="w-3.5 h-3.5 text-gray-400" />
+                                <Ticket className="w-3.5 h-3.5 text-gray-500" />
                                 <SelectValue placeholder="Selecciona..." />
                             </div>
                         </SelectTrigger>
@@ -71,16 +71,16 @@ export function EventListsTab() {
                     <div>
                         <h2 className="text-xl font-bold text-gray-900">Actividad</h2>
                         <div className="flex items-baseline gap-1 mt-1">
-                            <span className="text-xl font-bold text-green-500">50 <span className="text-xl font-medium">registrados</span></span>
+                            <span className="text-xl font-bold text-green-600">50 <span className="text-xl font-medium">registrados</span></span>
                         </div>
                     </div>
-                    <div className="text-xl text-red-400 font-bold">
+                    <div className="text-xl text-red-500 font-bold">
                         limite <span className="text-xl">500</span>
                     </div>
                 </div>
                 {/* Custom Progress Bar */}
-                <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500 w-[10%]" />
+                <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden border border-gray-200">
+                    <div className="h-full bg-green-500 w-[10%] shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
                 </div>
             </div>
 
@@ -92,32 +92,32 @@ export function EventListsTab() {
                 </div>
 
                 <div className="relative max-w-xs">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
-                    <Input placeholder="Buscar invitado" className="pl-9 h-9 text-xs border-[#FE6535] rounded-full bg-white" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
+                    <Input placeholder="Buscar invitado" className="pl-9 h-9 text-xs glass-input rounded-full" />
                 </div>
 
                 {/* Waitlist Items */}
                 <div className="space-y-3">
                     {waitlist.map((person) => {
                         const isSelected = selectedAttendees.includes(person.id);
-                        const statusColor = person.status === 'Asistirá' ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600';
+                        const statusColor = person.status === 'Asistirá' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700';
 
                         return (
-                            <div key={person.id} className="flex items-center justify-between p-3 border border-[#FE6535] rounded-lg bg-white hover:shadow-sm transition-shadow">
+                            <div key={person.id} className="glass-card flex items-center justify-between p-3 hover:shadow-md transition-shadow">
                                 <div className="flex items-center gap-3">
                                     {/* Checkbox */}
                                     <input
                                         type="checkbox"
                                         checked={isSelected}
                                         onChange={() => toggleAttendee(person.id)}
-                                        className="w-4 h-4 rounded border-[#FE6535] text-orange-500 focus:ring-orange-500"
+                                        className="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500 bg-white"
                                     />
-                                    <div className="p-1.5 border border-[#FE6535] rounded-md">
-                                        <Ticket className="w-3.5 h-3.5 text-gray-400" />
+                                    <div className="p-1.5 border border-gray-200 bg-gray-50 rounded-md">
+                                        <Ticket className="w-3.5 h-3.5 text-gray-500" />
                                     </div>
                                     <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
                                         <span className="text-sm font-bold text-gray-800 w-32">{person.name}</span>
-                                        <span className="text-xs text-gray-400 font-medium">{person.list}</span>
+                                        <span className="text-xs text-gray-500 font-medium">{person.list}</span>
                                     </div>
                                 </div>
 
@@ -125,7 +125,7 @@ export function EventListsTab() {
                                     <span className={`px-3 py-1 rounded-full text-[10px] font-bold ${statusColor}`}>
                                         {person.status}
                                     </span>
-                                    <Button size="sm" variant="secondary" className="bg-gray-100 text-gray-500 hover:bg-gray-200 h-7 text-[10px] font-medium border border-[#FE6535]">
+                                    <Button size="sm" variant="secondary" className="bg-white rounded-lg h-7 px-3 text-[10px] font-medium text-gray-600 hover:bg-gray-50 border border-gray-200">
                                         <X className="w-3 h-3 mr-1.5" /> Cancelar ↗
                                     </Button>
                                 </div>
@@ -135,8 +135,8 @@ export function EventListsTab() {
                 </div>
 
                 {/* Footer Message */}
-                <div className="mt-6 p-4 bg-orange-50 border border-orange-100 rounded-lg">
-                    <p className="text-xs text-orange-600 leading-relaxed">
+                <div className="mt-6 p-4 glass-panel bg-orange-50 border-orange-200">
+                    <p className="text-xs text-orange-700 leading-relaxed font-medium">
                         A las personas que apruebes, les llegará una confirmación por correo y WhatsApp con su entrada en formato QR. También podrán consultarla en cualquier momento, desde su cuenta en Tikipal
                     </p>
                 </div>

@@ -10,7 +10,7 @@ export default function SalesLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="min-h-screen bg-white animate-in fade-in duration-500">
+        <div className="min-h-screen animate-in fade-in duration-500">
             <div className={cn(CONTAINER, "py-1 flex justify-between items-center")}>
                 <div className="flex items-center gap-3">
                     <div className="h-8 w-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">

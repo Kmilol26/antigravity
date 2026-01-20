@@ -38,38 +38,38 @@ export function EventDashboardTab() {
             </div>
 
             {/* Metric Cards */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Entradas */}
-                <div className="bg-orange-50 border border-orange-200 rounded-xl h-[55px] px-4 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded bg-orange-500 flex items-center justify-center">
-                            <DoorOpen className="w-4 h-4 text-white" />
+                <div className="glass-card h-[60px] px-4 flex items-center justify-between group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
+                            <DoorOpen className="w-4 h-4 text-orange-600 group-hover:text-white transition-colors" />
                         </div>
-                        <span className="text-base font-bold text-gray-700">Entradas</span>
+                        <span className="text-sm font-medium text-gray-600 group-hover:text-gray-800">Entradas</span>
                     </div>
-                    <div className="text-2xl font-bold text-gray-900 leading-none">3</div>
+                    <div className="text-2xl font-bold text-gray-800">3</div>
                 </div>
 
                 {/* Tickets */}
-                <div className="bg-green-50 border border-green-200 rounded-xl h-[55px] px-4 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded bg-green-500 flex items-center justify-center">
-                            <TicketIcon className="w-4 h-4 text-white" />
+                <div className="glass-card h-[60px] px-4 flex items-center justify-between group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center group-hover:bg-green-500 transition-colors">
+                            <TicketIcon className="w-4 h-4 text-green-600 group-hover:text-white transition-colors" />
                         </div>
-                        <span className="text-base font-bold text-gray-700">Tickets</span>
+                        <span className="text-sm font-medium text-gray-600 group-hover:text-gray-800">Tickets</span>
                     </div>
-                    <div className="text-2xl font-bold text-gray-900 leading-none">44</div>
+                    <div className="text-2xl font-bold text-gray-800">44</div>
                 </div>
 
                 {/* Asistieron */}
-                <div className="bg-purple-50 border border-purple-200 rounded-xl h-[55px] px-4 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded bg-purple-500 flex items-center justify-center">
-                            <Users className="w-4 h-4 text-white" />
+                <div className="glass-card h-[60px] px-4 flex items-center justify-between group cursor-pointer">
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-500 transition-colors">
+                            <Users className="w-4 h-4 text-purple-600 group-hover:text-white transition-colors" />
                         </div>
-                        <span className="text-base font-bold text-gray-700">Asistieron</span>
+                        <span className="text-sm font-medium text-gray-600 group-hover:text-gray-800">Asistieron</span>
                     </div>
-                    <div className="text-2xl font-bold text-gray-900 leading-none">9</div>
+                    <div className="text-2xl font-bold text-gray-800">9</div>
                 </div>
             </div>
 
@@ -81,9 +81,9 @@ export function EventDashboardTab() {
                     <p className="text-base text-gray-500 mt-1">Elige la que quieras revisar</p>
                 </div>
 
-                <div className="flex gap-4 items-center w-full flex-nowrap">
+                <div className="flex gap-4 items-center w-full flex-wrap sm:flex-nowrap">
                     <Select defaultValue="Todos">
-                        <SelectTrigger className="w-full flex-1 h-12 border-[#FE6535] text-base font-medium rounded-lg">
+                        <SelectTrigger className="w-full flex-1 h-12 glass-input text-base font-medium rounded-xl">
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -94,7 +94,7 @@ export function EventDashboardTab() {
                     </Select>
 
                     <Select defaultValue="05, Junio,2025">
-                        <SelectTrigger className="w-full flex-1 h-12 border-[#FE6535] text-base font-medium rounded-lg">
+                        <SelectTrigger className="w-full flex-1 h-12 glass-input text-base font-medium rounded-xl">
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -104,7 +104,7 @@ export function EventDashboardTab() {
                     </Select>
 
                     <Select defaultValue="21, Junio, 2025">
-                        <SelectTrigger className="w-full flex-1 h-12 border-[#FE6535] text-base font-medium rounded-lg">
+                        <SelectTrigger className="w-full flex-1 h-12 glass-input text-base font-medium rounded-xl">
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -126,33 +126,33 @@ export function EventDashboardTab() {
 
                     {/* Pills */}
                     <div className="flex gap-4 pt-2 flex-wrap">
-                        <div className="h-12 px-7 rounded-xl bg-[#FE6535] text-white flex items-center justify-center">
+                        <div className="h-12 px-7 rounded-xl bg-[#FE6535] text-white flex items-center justify-center shadow-lg shadow-orange-500/30">
                             <div className="text-center leading-none">
                                 <div className="text-lg font-bold leading-none">50</div>
                                 <div className="text-base font-medium leading-none mt-0.5">Asistieron</div>
                             </div>
                         </div>
 
-                        <div className="h-12 px-7 rounded-xl border border-[#FE6535] bg-white flex items-center justify-center">
+                        <div className="h-12 px-7 rounded-xl border border-gray-200 bg-white flex items-center justify-center shadow-sm">
                             <div className="text-center leading-none">
                                 <div className="text-lg font-bold text-[#FE6535] leading-none">10</div>
-                                <div className="text-base font-medium text-gray-900 leading-none mt-0.5">No asistieron</div>
+                                <div className="text-base font-medium text-gray-800 leading-none mt-0.5">No asistieron</div>
                             </div>
                         </div>
                     </div>
 
                     {/* Tabla (más angosta) */}
-                    <div className="border border-[#FE6535] rounded-2xl p-8 w-full max-w-[520px]">
+                    <div className="glass-panel p-8 w-full max-w-[520px]">
                         <div className="space-y-7">
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
                                 <span className="text-base text-gray-700">Intentos de compra</span>
                                 <span className="text-lg font-bold text-[#FE6535]">80</span>
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
                                 <span className="text-base text-gray-700">Tickets</span>
                                 <span className="text-lg font-bold text-[#FE6535]">10</span>
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
                                 <span className="text-base text-gray-700">Entradas</span>
                                 <span className="text-lg font-bold text-[#FE6535]">60</span>
                             </div>
@@ -171,14 +171,14 @@ export function EventDashboardTab() {
                         <p className="text-base text-gray-500 mt-1">Comparativo visual del periodo seleccionado</p>
                     </div>
 
-                    <div className="border border-[#FE6535] rounded-2xl p-6">
+                    <div className="glass-panel p-6">
                         {/* Toggle buttons alineados con pills */}
                         <div className="flex gap-4 pt-2 flex-wrap justify-center">
-                            <button className="h-12 px-7 rounded-xl bg-[#FE6535] text-white flex items-center justify-center">
+                            <button className="h-12 px-7 rounded-xl bg-[#FE6535] text-white shadow-lg shadow-orange-500/30 flex items-center justify-center hover:scale-105 transition-transform">
                                 <span className="text-base font-medium">Por tickets</span>
                             </button>
-                            <button className="h-12 px-7 rounded-xl border border-[#FE6535] bg-white flex items-center justify-center">
-                                <span className="text-base font-medium text-gray-900">Por entradas</span>
+                            <button className="h-12 px-7 rounded-xl border border-gray-200 bg-white shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
+                                <span className="text-base font-medium text-gray-800">Por entradas</span>
                             </button>
                         </div>
 
@@ -186,10 +186,10 @@ export function EventDashboardTab() {
                             {[3, 4, 3, 5, 7, 6, 8, 7, 6, 9].map((height, idx) => (
                                 <div key={idx} className="flex flex-col items-center gap-1 flex-1">
                                     <div
-                                        className="w-full bg-[#FE6535] rounded-t-md"
+                                        className="w-full bg-[#FE6535] rounded-t-xl shadow-lg shadow-orange-500/20"
                                         style={{ height: `${height * 10}%` }}
                                     />
-                                    <span className="text-[10px] text-gray-400">{idx + 1}</span>
+                                    <span className="text-[10px] text-gray-600 font-medium">{idx + 1}</span>
                                 </div>
                             ))}
                         </div>
@@ -208,33 +208,33 @@ export function EventDashboardTab() {
 
                     {/* Pills */}
                     <div className="flex gap-4 pt-2 flex-wrap">
-                        <div className="h-12 px-7 rounded-xl bg-[#FE6535] text-white flex items-center justify-center">
+                        <div className="h-12 px-7 rounded-xl bg-[#FE6535] text-white flex items-center justify-center shadow-lg shadow-orange-500/30">
                             <div className="text-center leading-none">
                                 <div className="text-lg font-bold leading-none">200</div>
                                 <div className="text-base font-medium leading-none mt-0.5">Asistieron</div>
                             </div>
                         </div>
 
-                        <div className="h-12 px-7 rounded-xl border border-[#FE6535] bg-white flex items-center justify-center">
+                        <div className="h-12 px-7 rounded-xl border border-gray-200 bg-white shadow-sm flex items-center justify-center">
                             <div className="text-center leading-none">
                                 <div className="text-lg font-bold text-[#FE6535] leading-none">50</div>
-                                <div className="text-base font-medium text-gray-900 leading-none mt-0.5">No asistieron</div>
+                                <div className="text-base font-medium text-gray-800 leading-none mt-0.5">No asistieron</div>
                             </div>
                         </div>
                     </div>
 
                     {/* Tabla (más angosta) */}
-                    <div className="border border-[#FE6535] rounded-2xl p-8 w-full max-w-[520px]">
+                    <div className="glass-panel p-8 w-full max-w-[520px]">
                         <div className="space-y-7">
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
                                 <span className="text-lg text-gray-700">Intentos de compra</span>
                                 <span className="text-base font-bold text-[#FE6535]">600</span>
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
                                 <span className="text-lg text-gray-700">Tickets</span>
                                 <span className="text-base font-bold text-[#FE6535]">100</span>
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center border-b border-gray-100 pb-2">
                                 <span className="text-lg text-gray-700">Entradas</span>
                                 <span className="text-base font-bold text-[#FE6535]">300</span>
                             </div>
@@ -253,13 +253,13 @@ export function EventDashboardTab() {
                         <p className="text-base text-gray-500 mt-1">Comparativo histórico</p>
                     </div>
 
-                    <div className="border border-[#FE6535] rounded-2xl p-6">
+                    <div className="glass-panel p-6">
                         <div className="flex gap-4 pt-2 flex-wrap justify-center">
-                            <button className="h-12 px-7 rounded-xl bg-[#FE6535] text-white flex items-center justify-center">
+                            <button className="h-12 px-7 rounded-xl bg-[#FE6535] text-white shadow-lg shadow-orange-500/30 flex items-center justify-center hover:scale-105 transition-transform">
                                 <span className="text-base font-medium">Por tickets</span>
                             </button>
-                            <button className="h-12 px-7 rounded-xl border border-[#FE6535] bg-white flex items-center justify-center">
-                                <span className="text-base font-medium text-gray-900">Por entradas</span>
+                            <button className="h-12 px-7 rounded-xl border border-gray-200 bg-white shadow-sm flex items-center justify-center hover:bg-gray-50 transition-colors">
+                                <span className="text-base font-medium text-gray-800">Por entradas</span>
                             </button>
                         </div>
 
@@ -267,10 +267,10 @@ export function EventDashboardTab() {
                             {[4, 5, 4, 6, 8, 7, 9, 8, 7, 9].map((height, idx) => (
                                 <div key={idx} className="flex flex-col items-center gap-1 flex-1">
                                     <div
-                                        className="w-full bg-[#FE6535] rounded-t-md"
+                                        className="w-full bg-[#FE6535] rounded-t-xl shadow-lg shadow-orange-500/20"
                                         style={{ height: `${height * 10}%` }}
                                     />
-                                    <span className="text-[10px] text-gray-400">{idx + 1}</span>
+                                    <span className="text-[10px] text-gray-600 font-medium">{idx + 1}</span>
                                 </div>
                             ))}
                         </div>
@@ -283,40 +283,42 @@ export function EventDashboardTab() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Usuarios - Periodo */}
                 <div className="space-y-3">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center px-1">
                         <div>
                             <h3 className="text-xl font-bold text-gray-900">Usuarios</h3>
                             <p className="text-base text-gray-500">En el periodo seleccionado</p>
                         </div>
-                        <button className="text-xs text-orange-500 font-medium hover:underline">Descargar lista ↗</button>
+                        <button className="text-xs text-orange-600 font-medium hover:underline">Descargar lista ↗</button>
                     </div>
 
-                    <div className="border border-[#FE6535] rounded-xl overflow-hidden">
-                        <table className="w-full text-[11px]">
-                            <thead className="bg-gray-50 border-b border-[#FE6535]">
-                                <tr>
-                                    <th className="text-left p-2.5 font-medium text-gray-600">Usuario</th>
-                                    <th className="text-left p-2.5 font-medium text-gray-600">ID Único</th>
-                                    <th className="text-right p-2.5 font-medium text-gray-600">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {periodUsers.slice(0, 8).map((user, idx) => (
-                                    <tr key={idx} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
-                                        <td className="p-2.5 text-gray-700">{user.email}</td>
-                                        <td className="p-2.5 text-gray-500">{user.id}</td>
-                                        <td className="p-2.5 text-right font-bold text-gray-900">{user.count}</td>
+                    <div className="glass-panel overflow-hidden">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-[11px] min-w-[400px]">
+                                <thead className="bg-gray-50 border-b border-gray-200">
+                                    <tr>
+                                        <th className="text-left p-3 font-medium text-gray-700">Usuario</th>
+                                        <th className="text-left p-3 font-medium text-gray-700">ID Único</th>
+                                        <th className="text-right p-3 font-medium text-gray-700">Cantidad</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {periodUsers.slice(0, 8).map((user, idx) => (
+                                        <tr key={idx} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                                            <td className="p-3 text-gray-800">{user.email}</td>
+                                            <td className="p-3 text-gray-600">{user.id}</td>
+                                            <td className="p-3 text-right font-bold text-gray-900">{user.count}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
                         {/* Pagination */}
-                        <div className="bg-white border-t border-gray-100 px-3 py-2 flex items-center justify-between">
-                            <div className="text-[10px] text-gray-500">1-8 de 20</div>
+                        <div className="bg-gray-50 border-t border-gray-200 px-3 py-2 flex items-center justify-between">
+                            <div className="text-[10px] text-gray-600">1-8 de 20</div>
                             <div className="flex gap-2">
-                                <button className="text-[10px] text-gray-400 hover:text-gray-600">Primera página</button>
-                                <button className="text-[10px] text-orange-500 font-medium">1 ↓</button>
+                                <button className="text-[10px] text-gray-500 hover:text-gray-800">Primera página</button>
+                                <button className="text-[10px] text-orange-600 font-medium">1 ↓</button>
                             </div>
                         </div>
                     </div>
@@ -324,40 +326,42 @@ export function EventDashboardTab() {
 
                 {/* Todos los Usuarios - All Time */}
                 <div className="space-y-3">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center px-1">
                         <div>
                             <h3 className="text-xl font-bold text-gray-900">Todos los Usuarios</h3>
                             <p className="text-base text-gray-500">Todo el Tiempo</p>
                         </div>
-                        <button className="text-xs text-orange-500 font-medium hover:underline">Descargar lista ↗</button>
+                        <button className="text-xs text-orange-600 font-medium hover:underline">Descargar lista ↗</button>
                     </div>
 
-                    <div className="border border-[#FE6535] rounded-xl overflow-hidden">
-                        <table className="w-full text-[11px]">
-                            <thead className="bg-gray-50 border-b border-[#FE6535]">
-                                <tr>
-                                    <th className="text-left p-2.5 font-medium text-gray-600">Usuario</th>
-                                    <th className="text-left p-2.5 font-medium text-gray-600">ID Único</th>
-                                    <th className="text-right p-2.5 font-medium text-gray-600">Cantidad</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {allTimeUsers.slice(0, 8).map((user, idx) => (
-                                    <tr key={idx} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
-                                        <td className="p-2.5 text-gray-700">{user.email}</td>
-                                        <td className="p-2.5 text-gray-500">{user.id}</td>
-                                        <td className="p-2.5 text-right font-bold text-gray-900">{user.count}</td>
+                    <div className="glass-panel overflow-hidden">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-[11px] min-w-[400px]">
+                                <thead className="bg-gray-50 border-b border-gray-200">
+                                    <tr>
+                                        <th className="text-left p-3 font-medium text-gray-700">Usuario</th>
+                                        <th className="text-left p-3 font-medium text-gray-700">ID Único</th>
+                                        <th className="text-right p-3 font-medium text-gray-700">Cantidad</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {allTimeUsers.slice(0, 8).map((user, idx) => (
+                                        <tr key={idx} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                                            <td className="p-3 text-gray-800">{user.email}</td>
+                                            <td className="p-3 text-gray-600">{user.id}</td>
+                                            <td className="p-3 text-right font-bold text-gray-900">{user.count}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
                         {/* Pagination */}
-                        <div className="bg-white border-t border-gray-100 px-3 py-2 flex items-center justify-between">
-                            <div className="text-[10px] text-gray-500">1-8 de 20</div>
+                        <div className="bg-gray-50 border-t border-gray-200 px-3 py-2 flex items-center justify-between">
+                            <div className="text-[10px] text-gray-600">1-8 de 20</div>
                             <div className="flex gap-2">
-                                <button className="text-[10px] text-gray-400 hover:text-gray-600">Primera página</button>
-                                <button className="text-[10px] text-orange-500 font-medium">1 ↓</button>
+                                <button className="text-[10px] text-gray-500 hover:text-gray-800">Primera página</button>
+                                <button className="text-[10px] text-orange-600 font-medium">1 ↓</button>
                             </div>
                         </div>
                     </div>
