@@ -17,7 +17,7 @@ export function EventNav({ activeTab }: { eventId?: string, activeTab?: string }
     ];
 
     return (
-        <div className="border-b border-gray-100 mt-1">
+        <div className="border-b border-gray-200 mt-1">
             <div className="max-w-[820px] mx-auto px-6 w-full">
                 <nav className="-mb-px flex gap-6 overflow-x-auto scrollbar-hide touch-pan-x">
                     {navigation.map((item) => {

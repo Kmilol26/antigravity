@@ -76,7 +76,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
     ];
 
     return (
-        <div className="space-y-10 animate-in fade-in duration-500 max-w-[820px] mx-auto px-6 pb-20">
+        <div className="space-y-10 animate-in fade-in duration-500 max-w-[820px] mx-auto pb-20">
 
             {/* Revenue Summary */}
             <div className="space-y-4">
@@ -109,7 +109,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                             </div>
                         </div>
                         <div>
-                            <div className="text-sm text-gray-700">Todo el tiempo</div>
+                            <div className="text-sm text-gray-700">Ingresos todo el tiempo</div>
                             <div className="text-2xl font-bold text-[#FE6535]">1.000.000 COP</div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                             </div>
                         </div>
                         <div>
-                            <div className="text-sm text-gray-700">Mes pasado</div>
+                            <div className="text-sm text-gray-700">Ventas mes pasado</div>
                             <div className="text-2xl font-bold text-[#FE6535]">500.000 COP</div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                             </div>
                         </div>
                         <div>
-                            <div className="text-sm text-gray-700">Entradas vendidas</div>
+                            <div className="text-sm text-gray-700">Entradas vendidas todo el tiempo </div>
                             <div className="text-2xl font-bold text-[#FE6535]">1245</div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@ export function EventPaymentsTab({ initialMethods = [] }: { initialMethods?: any
                             </div>
                         </div>
                         <div>
-                            <div className="text-sm text-gray-700">Entradas vendidas</div>
+                            <div className="text-sm text-gray-700">Entradas vendidas mes</div>
                             <div className="text-2xl font-bold text-[#FE6535]">866</div>
                         </div>
                     </div>

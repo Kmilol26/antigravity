@@ -49,14 +49,14 @@ export function EventsListTab({ initialEvents }: { initialEvents: any[] }) {
                 <div className="flex flex-wrap gap-4">
                     <div className="glass-panel flex items-center gap-3 px-5 h-12 min-w-[180px]">
                         <span className="text-base font-semibold text-gray-700">Eventos</span>
-                        <span className="ml-auto bg-purple-100 text-purple-700 text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none">
+                        <span className="ml-auto bg-purple-100 text-purple-700 text-base font-semibold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none">
                             8
                         </span>
                     </div>
 
                     <div className="glass-panel flex items-center gap-3 px-5 h-12 min-w-[220px]">
                         <span className="text-base font-semibold text-gray-700">Ubicación</span>
-                        <span className="ml-auto bg-red-100 text-red-700 text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none whitespace-nowrap">
+                        <span className="ml-auto bg-red-100 text-red-700 text-base font-semibold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none whitespace-nowrap">
                             Bogota
                         </span>
                     </div>
@@ -64,7 +64,7 @@ export function EventsListTab({ initialEvents }: { initialEvents: any[] }) {
 
                 {/* Filters Bar */}
                 <div className="glass-panel flex flex-wrap items-center gap-3 h-12 px-4 w-fit">
-                    <span className="text-base font-bold text-gray-700 mr-2">Categorias</span>
+                    <span className="text-base font-semibold text-gray-700 mr-2">Categorias</span>
 
                     <button className="h-6 px-3 inline-flex items-center justify-center bg-green-100 text-green-700 text-xs font-bold rounded-lg hover:bg-green-200 transition-colors shadow-sm">
                         Zona 85

@@ -45,9 +45,9 @@ export function EventDashboardTab() {
                         <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
                             <DoorOpen className="w-4 h-4 text-orange-600 group-hover:text-white transition-colors" />
                         </div>
-                        <span className="text-sm font-medium text-gray-600 group-hover:text-gray-800">Entradas</span>
+                        <span className="text-base font-semibold text-gray-600 group-hover:text-gray-800">Entradas</span>
                     </div>
-                    <div className="text-2xl font-bold text-gray-800">3</div>
+                    <div className="text-base font-bold text-gray-800">3</div>
                 </div>
 
                 {/* Tickets */}
@@ -56,9 +56,9 @@ export function EventDashboardTab() {
                         <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center group-hover:bg-green-500 transition-colors">
                             <TicketIcon className="w-4 h-4 text-green-600 group-hover:text-white transition-colors" />
                         </div>
-                        <span className="text-sm font-medium text-gray-600 group-hover:text-gray-800">Tickets</span>
+                        <span className="text-base font-semibold text-gray-600 group-hover:text-gray-800">Tickets</span>
                     </div>
-                    <div className="text-2xl font-bold text-gray-800">44</div>
+                    <div className="text-base font-bold text-gray-800">44</div>
                 </div>
 
                 {/* Asistieron */}
@@ -67,9 +67,9 @@ export function EventDashboardTab() {
                         <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-500 transition-colors">
                             <Users className="w-4 h-4 text-purple-600 group-hover:text-white transition-colors" />
                         </div>
-                        <span className="text-sm font-medium text-gray-600 group-hover:text-gray-800">Asistieron</span>
+                        <span className="text-base font-semibold text-gray-600 group-hover:text-gray-800">Asistieron</span>
                     </div>
-                    <div className="text-2xl font-bold text-gray-800">9</div>
+                    <div className="text-base font-bold text-gray-800">9</div>
                 </div>
             </div>
 

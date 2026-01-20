@@ -50,7 +50,7 @@ export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
                     <div className="glass-panel flex items-center gap-3 px-5 h-12 min-w-[180px]">
                         <span className="text-base font-semibold text-gray-700">Espacios</span>
 
-                        <span className="ml-auto bg-green-100 text-green-700 text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none shadow-sm">
+                        <span className="ml-auto bg-green-100 text-green-700 text-base font-semibold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none shadow-sm">
                             14
                         </span>
                     </div>
@@ -58,7 +58,7 @@ export function EventSpacesTab({ initialSpaces }: { initialSpaces: any[] }) {
                     <div className="glass-panel flex items-center gap-3 px-5 h-12 min-w-[220px]">
                         <span className="text-base font-semibold text-gray-700">Ubicación</span>
 
-                        <span className="ml-auto bg-red-100 text-red-700 text-base font-bold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none whitespace-nowrap shadow-sm">
+                        <span className="ml-auto bg-red-100 text-red-700 text-base font-semibold px-3 h-6 inline-flex items-center justify-center rounded-md leading-none whitespace-nowrap shadow-sm">
                             Bogota
                         </span>
                     </div>
