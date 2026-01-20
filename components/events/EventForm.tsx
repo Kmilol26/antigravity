@@ -110,7 +110,7 @@ export function EventForm({ event, spaces }: { event?: EventLike; spaces: Space[
       }
 
       // Hoy lo quieres fijo:
-      router.push("/events/123");
+      router.push("/events");
     });
   };
 

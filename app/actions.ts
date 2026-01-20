@@ -6,12 +6,17 @@ import { revalidatePath } from 'next/cache'
 const prisma = new PrismaClient()
 
 export async function getBusiness() {
-    const business = await prisma.business.findFirst({
-        include: {
-            invoices: true
-        }
-    })
-    return business
+    try {
+        const business = await prisma.business.findFirst({
+            include: {
+                invoices: true
+            }
+        })
+        return business
+    } catch (error) {
+        console.error('Failed to fetch business:', error)
+        return null
+    }
 }
 
 export async function updateBusiness(formData: FormData) {
@@ -41,7 +46,7 @@ export async function updateBusiness(formData: FormData) {
         }
     })
 
-    revalidatePath('/events/123')
+    revalidatePath('/business')
     return { success: true }
 }
 
