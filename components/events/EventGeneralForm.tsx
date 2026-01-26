@@ -101,11 +101,17 @@ export function EventGeneralForm({ initialData }: { initialData: any }) {
                         Subir Logo
                     </Button>
 
-                    <div className="h-24 w-24 rounded-full glass-panel flex items-center justify-center text-pink-600 text-xs overflow-hidden shadow-sm bg-pink-50">
+                    <div className="h-28 w-28 rounded-[24px] glass-panel bg-gradient-to-br from-white/40 to-white/10 backdrop-blur-xl border border-white/40 flex items-center justify-center overflow-hidden shadow-2xl relative group transition-all duration-300 hover:scale-105">
                         {logoPreview ? (
-                            <img src={logoPreview} className="h-full w-full object-cover" alt="Logo" />
+                            <>
+                                <img src={logoPreview} className="h-full w-full object-contain p-2" alt="Logo" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+                            </>
                         ) : (
-                            <span className="text-2xl">✨</span>
+                            <div className="flex flex-col items-center justify-center text-gray-400 gap-1">
+                                <span className="text-3xl opacity-50">✨</span>
+                                <span className="text-[10px] font-medium">Logo</span>
+                            </div>
                         )}
                     </div>
                 </div>
